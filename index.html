@@ -234,7 +234,7 @@ async function send(){
   try{
     const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist.slice(-12)})});
     if(!res.ok)throw new Error(res.status);
-    const j=await res.json();w.textContent=j.reply;hist.push({role:'assistant',content:j.reply});
+    const j=await res.json();const clean=j.reply.replace(/\*\*/g,'').replace(/^\s*\*\s+/gm,'• ');w.textContent=clean;hist.push({role:'assistant',content:j.reply});
   }catch(e){w.textContent='El asistente no está conectado todavía. Mientras tanto, si es una emergencia llama al 105 o al 100.'}
   saveChatHistory();
 }
