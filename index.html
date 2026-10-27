@@ -193,14 +193,13 @@ footer{text-align:center;color:var(--mut);padding:40px 5vw 100px;font-size:.85re
 })();
 
 /* ===== MÓDULO 3: COMENTARIOS (listo para conectar Supabase u otro servicio) ===== */
-const localComments=[{n:'María P.',t:'Muy claro y fácil de entender. ¡Gracias!'}];
+const localComments=[];
 async function fetchComments(){
-  // TODO: const {data}=await supabase.from('comments').select('*').order('created_at',{ascending:false}); return data;
-  return localComments;
+  try{const r=await fetch('/api/comments');if(!r.ok)throw 0;return await r.json()}catch(e){return localComments}
 }
 async function postComment(name,text){
-  // TODO: await supabase.from('comments').insert({name,text});
-  localComments.unshift({n:name,t:text});
+  try{const r=await fetch('/api/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,text})});if(!r.ok)throw 0}
+  catch(e){localComments.unshift({n:name,t:text})}
 }
 async function renderComments(){
   const list=await fetchComments(),box=document.getElementById('cmList');box.innerHTML='';
@@ -223,16 +222,17 @@ renderComments();
 */
 const DISCLAIMER='Esta plataforma brinda orientación jurídica general y no reemplaza el patrocinio de un abogado colegiado.';
 const hist=[];
+  const sid=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Date.now());
 const msgs=document.getElementById('msgs');
 function addMsg(t,who){const d=document.createElement('div');d.className='m '+who;d.textContent=t;msgs.append(d);msgs.scrollTop=msgs.scrollHeight;return d}
-function openChat(){const c=document.getElementById('chat');c.classList.toggle('on');if(c.classList.contains('on')&&!msgs.children.length)addMsg('¡Hola! Soy tu asistente de Legalis Click Perú. ⚖️\n\n'+DISCLAIMER+'\n\n¿En qué puedo ayudarte hoy?','bot')}
+function openChat(){const c=document.getElementById('chat');c.classList.toggle('on');if(c.classList.contains('on')&&!msgs.children.length)addMsg('¡Hola! Soy tu asistente de Legalis Click Perú. ⚖️\n\n'+DISCLAIMER+'\n\nPor tu privacidad, no escribas tu DNI, nombres completos ni datos de casos reales. Las consultas se guardan sin tu nombre para mejorar el servicio y se procesan con Google Gemini.\n\n¿En qué puedo ayudarte hoy?','bot')
 function quick(a){document.getElementById('cin').value='Tengo una consulta sobre '+a;send()}
 async function send(){
   const i=document.getElementById('cin'),t=i.value.trim();if(!t)return;i.value='';
   addMsg(t,'me');hist.push({role:'user',content:t});
   const w=addMsg('Escribiendo…','bot');
   try{
-    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist.slice(-12)})});
+ const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist.slice(-12),session:sid})});
     if(!res.ok)throw new Error(res.status);
     const j=await res.json();w.textContent=j.reply;hist.push({role:'assistant',content:j.reply});
   }catch(e){w.textContent='El asistente no está conectado todavía. Mientras tanto, si es una emergencia llama al 105 o al 100.'}
