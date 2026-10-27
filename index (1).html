@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Legalis Click Perú</title>
+<style>
+:root{--bg:#04080f;--navy:#0a1f44;--blue:#1e63e9;--sky:#5ec8ff;--white:#f4f8ff;--mut:#9db4d6;--card:rgba(255,255,255,.05);--bd:rgba(94,200,255,.25);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Georgia,'Times New Roman',serif;line-height:1.6;overflow-x:hidden}
+h1,h2,h3,button,.nav{font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
+#bg{position:fixed;inset:0;z-index:0}
+main,header,footer{position:relative;z-index:1}
+.nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(4,8,15,.7);backdrop-filter:blur(10px)}
+.nav b{letter-spacing:.12em}.nav a{color:var(--mut);text-decoration:none;margin-left:18px;font-size:.9rem}.nav a:hover{color:var(--sky)}
+@media(max-width:700px){.nav a{display:none}}
+section{padding:90px 5vw;max-width:1100px;margin:auto}
+.hero{min-height:100vh;display:grid;align-content:center;text-align:center;justify-items:center;gap:20px}
+.hero h1{font-size:clamp(2.4rem,8vw,5.5rem);margin:0;background:linear-gradient(90deg,var(--white),var(--sky),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:620px;color:var(--mut)}
+.disc{border:1px solid var(--sky);background:rgba(30,99,233,.18);padding:14px 20px;border-radius:14px;max-width:640px;font-weight:600;box-shadow:0 0 30px rgba(94,200,255,.25)}
+.btn{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--sky));color:#031022;font-weight:700;border:0;padding:13px 26px;border-radius:40px;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 30px rgba(94,200,255,.4)}
+h2{font-size:clamp(1.7rem,4vw,2.6rem);margin:0 0 8px}.sub{color:var(--mut);margin:0 0 32px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:22px;text-decoration:none;color:inherit;display:block;transition:transform .25s,border-color .25s,background .25s;transform-style:preserve-3d}
+.card:hover{border-color:var(--sky);background:rgba(30,99,233,.2)}
+.num{font-family:system-ui,sans-serif;font-size:2.8rem;font-weight:800;color:var(--sky);line-height:1}
+.card small{color:var(--mut)}
+.art{width:100%;max-width:240px;filter:drop-shadow(0 10px 30px rgba(94,200,255,.45));animation:fl 4s ease-in-out infinite}.gal{text-align:center}.gal .card{display:grid;place-items:center;gap:8px}.ph{display:grid;place-items:center;min-height:200px;border:2px dashed var(--bd);border-radius:18px;color:var(--mut);text-align:center;padding:16px;background:repeating-conic-gradient(rgba(255,255,255,.04) 0 25%,transparent 0 50%) 0 0/20px 20px}
+.split{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:center}
+.ph svg{width:100px;height:100px;stroke:var(--sky);fill:none;stroke-width:2;animation:fl 4s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-10px) rotate(3deg)}}
+details{background:var(--card);border:1px solid var(--bd);border-radius:14px;margin-bottom:10px;padding:4px 18px}
+summary{cursor:pointer;padding:14px 0;font-weight:600;font-family:system-ui,sans-serif;list-style:none}
+summary::after{content:'+';float:right;color:var(--sky);font-size:1.4rem}details[open] summary::after{content:'–'}
+details p{margin:0 0 14px;color:var(--mut)}
+textarea,input{width:100%;background:rgba(255,255,255,.07);border:1px solid var(--bd);color:var(--white);border-radius:12px;padding:12px;font:inherit}
+.cm{border-left:3px solid var(--blue);padding:10px 14px;margin:10px 0;background:var(--card);border-radius:0 12px 12px 0}
+.rv{opacity:0;transform:translateY(40px)}
+#fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;width:62px;height:62px;border-radius:50%;font-size:1.6rem;padding:0}
+#chat{position:fixed;right:14px;bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:30;width:min(380px,calc(100vw - 28px));height:min(560px,70vh);background:#071228;border:1px solid var(--sky);border-radius:20px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#chat.on{display:flex}
+#chat header{padding:12px 16px;background:var(--navy);font-family:system-ui,sans-serif;font-weight:700}
+#msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.m{max-width:85%;padding:10px 14px;border-radius:16px;font-size:.92rem;white-space:pre-wrap}
+.bot{background:var(--navy);align-self:flex-start}.me{background:var(--blue);align-self:flex-end}
+.qk{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px}
+.qk button{background:transparent;color:var(--sky);border:1px solid var(--sky);border-radius:20px;padding:6px 12px;cursor:pointer;font-size:.8rem}
+.row{display:flex;gap:8px;padding:10px}
+footer{text-align:center;color:var(--mut);padding:40px 5vw 100px;font-size:.85rem}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gA" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#5ec8ff"/><stop offset="1" stop-color="#1e63e9"/></linearGradient><linearGradient id="gB" x1="0" x2="1"><stop offset="0" stop-color="#0a1f44"/><stop offset="1" stop-color="#1e63e9"/></linearGradient></defs></svg>
+<canvas id="bg" aria-hidden="true"></canvas>
+<nav class="nav"><b>LEGALIS CLICK</b><div><a href="#emergencia">Emergencias</a><a href="#enlaces">Enlaces</a><a href="#faq">FAQ</a><a href="#opiniones">Opiniones</a></div></nav>
+
+<header class="hero" id="inicio">
+  <!-- VIDEO IA (opcional): <video autoplay muted loop playsinline src="media/hero.mp4"></video> -->
+  <h1>Legalis Click Perú</h1>
+  <p>Orientación jurídica clara, empática y al alcance de un clic.</p>
+  <div class="disc" role="note">⚖️ Esta plataforma brinda orientación jurídica general y no reemplaza el patrocinio de un abogado colegiado.</div>
+  <div><a class="btn" href="#emergencia">Ver emergencias</a> <button class="btn" onclick="openChat()">Consultar ahora</button></div>
+</header>
+
+<main>
+<section class="split rv">
+  <div><h2>Tus derechos, sin complicaciones</h2><p class="sub">Familia, penal, laboral y civil explicados en lenguaje sencillo, con base en la normativa peruana vigente.</p></div>
+  <div style="display:grid;place-items:center"><svg class="art" viewBox="0 0 200 200" role="img" aria-label="Mazo de juez"><g transform="rotate(-35 100 95)"><rect x="52" y="38" width="96" height="40" rx="9" fill="url(#gA)"/><rect x="44" y="42" width="14" height="32" rx="4" fill="url(#gB)"/><rect x="142" y="42" width="14" height="32" rx="4" fill="url(#gB)"/><rect x="93" y="78" width="14" height="104" rx="6" fill="url(#gB)"/></g><ellipse cx="108" cy="186" rx="62" ry="9" fill="url(#gA)"/><rect x="46" y="170" width="124" height="14" rx="5" fill="url(#gB)"/></svg></div>
+</section>
+
+<section class="gal rv"><h2>Justicia al alcance de todos</h2><p class="sub">Familia, trabajo, penal y civil, con el respaldo de la ley peruana.</p>
+<div class="grid"><div class="card"><svg class="art" viewBox="0 0 200 200" role="img" aria-label="Mazo de juez"><g transform="rotate(-35 100 95)"><rect x="52" y="38" width="96" height="40" rx="9" fill="url(#gA)"/><rect x="44" y="42" width="14" height="32" rx="4" fill="url(#gB)"/><rect x="142" y="42" width="14" height="32" rx="4" fill="url(#gB)"/><rect x="93" y="78" width="14" height="104" rx="6" fill="url(#gB)"/></g><ellipse cx="108" cy="186" rx="62" ry="9" fill="url(#gA)"/><rect x="46" y="170" width="124" height="14" rx="5" fill="url(#gB)"/></svg><b>Mazo</b><small>Tus procesos, resueltos con orden</small></div><div class="card"><svg class="art" viewBox="0 0 200 200" role="img" aria-label="Balanza de la justicia" fill="none" stroke="url(#gA)" stroke-width="5" stroke-linecap="round"><path d="M100 28v140M64 170h72M30 56h140M100 28m-6 0a6 6 0 1 0 12 0a6 6 0 1 0-12 0"/><path d="M30 56l-22 52h44zM170 56l-22 52h44z"/><path d="M8 108a22 12 0 0 0 44 0M148 108a22 12 0 0 0 44 0"/></svg><b>Balanza</b><small>Equilibrio e igualdad ante la ley</small></div><div class="card"><svg class="art" viewBox="0 0 200 200" role="img" aria-label="Código y Constitución"><rect x="40" y="30" width="120" height="140" rx="10" fill="url(#gB)" stroke="#5ec8ff" stroke-width="3"/><rect x="40" y="30" width="18" height="140" rx="6" fill="url(#gA)"/><g stroke="#f4f8ff" stroke-width="4" stroke-linecap="round"><path d="M76 70h66M76 90h66M76 110h44"/></g><circle cx="110" cy="142" r="12" fill="none" stroke="#5ec8ff" stroke-width="3"/></svg><b>Código y Constitución</b><small>Base de toda orientación</small></div></div></section>
+<section id="emergencia" class="rv">
+  <h2>Números de emergencia</h2><p class="sub">Toca una tarjeta para marcar directamente desde tu celular.</p>
+  <div class="grid">
+    <a class="card tilt" href="tel:105"><div class="num">105</div>Policía Nacional<br><small>Llamar ahora</small></a>
+    <a class="card tilt" href="tel:116"><div class="num">116</div>Bomberos<br><small>Llamar ahora</small></a>
+    <a class="card tilt" href="tel:106"><div class="num">106</div>SAMU<br><small>Llamar ahora</small></a>
+    <a class="card tilt" href="tel:119"><div class="num">119</div>Emergencias<br><small>Llamar ahora</small></a>
+    <a class="card tilt" href="tel:100"><div class="num">100</div>Violencia familiar<br><small>Llamar ahora</small></a>
+  </div>
+</section>
+
+<section id="enlaces" class="rv">
+  <h2>Enlaces oficiales y asistencia gratuita</h2><p class="sub">Se abren en la página oficial de cada entidad.</p>
+  <div class="grid">
+    <a class="card tilt" target="_blank" rel="noopener noreferrer" href="https://cej.pj.gob.pe/cej/forms/busquedaform.html"><h3>Poder Judicial · CEJ</h3><small>Consulta de expedientes</small></a>
+    <a class="card tilt" target="_blank" rel="noopener noreferrer" href="https://www.sunarp.gob.pe/"><h3>SUNARP</h3><small>Registros públicos</small></a>
+    <a class="card tilt" target="_blank" rel="noopener noreferrer" href="https://www.gob.pe/institucion/reniec"><h3>RENIEC</h3><small>Identidad y DNI</small></a>
+    <a class="card tilt" target="_blank" rel="noopener noreferrer" href="https://www.gob.pe/institucion/minjus"><h3>Defensa Pública · MINJUS</h3><small>Abogado gratuito</small></a>
+    <a class="card tilt" target="_blank" rel="noopener noreferrer" href="https://www.gob.pe/institucion/mimp"><h3>DEMUNA · MIMP</h3><small>Defensoría del niño y adolescente</small></a>
+  </div>
+</section>
+
+<section class="split rv">
+  <div class="ph"><div>Placeholder: video IA (loop 10 s, mazo y balanza en cámara lenta)<br><small>&lt;video src="media/justicia.mp4"&gt;</small></div></div>
+  <div><h2>Justicia en movimiento</h2><p class="sub">Haz scroll: el mundo 3D del fondo responde a tu mouse, tu dedo y tu scroll.</p></div>
+</section>
+
+<section id="faq" class="rv">
+  <h2>Preguntas frecuentes</h2><p class="sub">Respuestas generales; para tu caso concreto consulta a un abogado colegiado.</p>
+  <details><summary>¿Cómo se solicita una pensión de alimentos?</summary><p>Puedes acudir al Juzgado de Paz Letrado o a un Centro de Conciliación. La Defensa Pública y las DEMUNA orientan gratis. Lleva DNI y partida de nacimiento del menor.</p></details>
+  <details><summary>¿Qué hago si me despidieron sin causa justa?</summary><p>Se considera despido arbitrario. Puedes reclamar indemnización o reposición ante el Poder Judicial; existen plazos cortos (30 días hábiles para accionar), así que actúa pronto y consulta con un abogado laboralista o el Ministerio de Trabajo.</p></details>
+  <details><summary>¿Cómo presento una denuncia?</summary><p>Ve a una comisaría o a la Fiscalía de tu jurisdicción con tu DNI y las pruebas que tengas. Pide una copia o número de tu denuncia.</p></details>
+  <details><summary>¿Y si no puedo pagar un abogado?</summary><p>Puedes solicitar la Defensa Pública del MINJUS, sin costo, si cumples los requisitos socioeconómicos.</p></details>
+</section>
+
+<section id="opiniones" class="rv">
+  <h2>Opiniones</h2><p class="sub">Lee y comparte tu experiencia.</p>
+  <div id="cmList"></div>
+  <input id="cmName" placeholder="Tu nombre" maxlength="40" style="margin-bottom:8px">
+  <textarea id="cmText" rows="3" placeholder="Escribe tu opinión…" maxlength="400"></textarea><br><br>
+  <button class="btn" onclick="submitComment()">Publicar opinión</button>
+</section>
+</main>
+<footer>© 2026 Legalis Click Perú · Orientación general, no reemplaza a un abogado colegiado.</footer>
+
+<button id="fab" class="btn" onclick="openChat()" aria-label="Abrir chat">💬</button>
+<div id="chat" role="dialog" aria-label="Chat Legalis">
+  <header>⚖️ Asistente Legalis <span style="float:right;cursor:pointer" onclick="openChat()">✕</span></header>
+  <div id="msgs"></div>
+  <div class="qk">
+    <button onclick="quick('Derecho de Familia')">Familia</button><button onclick="quick('Derecho Penal')">Penal</button>
+    <button onclick="quick('Derecho Laboral')">Laboral</button><button onclick="quick('Derecho Civil')">Civil</button>
+  </div>
+  <div class="row"><input id="cin" placeholder="Escribe tu consulta…" onkeydown="if(event.key==='Enter')send()"><button class="btn" onclick="send()">➤</button></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+/* ===== MÓDULO 1: MUNDO 3D INTERACTIVO (reacciona a mouse, toque y scroll) ===== */
+(function(){
+  const cv=document.getElementById('bg');
+  if(!window.THREE){return}
+  const r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
+  r.setPixelRatio(Math.min(devicePixelRatio,2));
+  const s=new THREE.Scene(),c=new THREE.PerspectiveCamera(50,1,.1,100);c.position.z=9;
+  s.add(new THREE.AmbientLight(0x88aaff,.7));const L=new THREE.PointLight(0x5ec8ff,3);L.position.set(5,4,7);s.add(L);
+  const W=new THREE.Group();s.add(W);
+  const R=2.6;
+  W.add(new THREE.Mesh(new THREE.SphereGeometry(R,48,48),new THREE.MeshStandardMaterial({color:0x061a3a,emissive:0x04132e,metalness:.3,roughness:.6})));
+  W.add(new THREE.Mesh(new THREE.SphereGeometry(R+.02,28,18),new THREE.MeshBasicMaterial({color:0x1e63e9,wireframe:true,transparent:true,opacity:.22})));
+  const lp=[];
+  for(let i=0;i<7000;i++){const th=Math.random()*6.2832,ph=Math.acos(2*Math.random()-1);
+    const x=Math.sin(ph)*Math.cos(th),y=Math.cos(ph),z=Math.sin(ph)*Math.sin(th);
+    const n=Math.sin(x*3.1+1)*Math.cos(y*3.7)+Math.sin(z*4.3+x*2)*.7+Math.cos(y*6+z*2)*.4;
+    if(n>.3)lp.push(x*(R+.04),y*(R+.04),z*(R+.04))}
+  const lg=new THREE.BufferGeometry();lg.setAttribute('position',new THREE.Float32BufferAttribute(lp,3));
+  W.add(new THREE.Points(lg,new THREE.PointsMaterial({color:0x5ec8ff,size:.04})));
+  s.add(new THREE.Mesh(new THREE.SphereGeometry(R+.35,32,32),new THREE.MeshBasicMaterial({color:0x5ec8ff,transparent:true,opacity:.09,side:THREE.BackSide})));
+  const ring=new THREE.Mesh(new THREE.TorusGeometry(R+.9,.012,8,120),new THREE.MeshBasicMaterial({color:0x5ec8ff,transparent:true,opacity:.5}));
+  ring.rotation.x=1.2;W.add(ring);
+  const sat=new THREE.Mesh(new THREE.SphereGeometry(.07,12,12),new THREE.MeshBasicMaterial({color:0xffffff}));ring.add(sat);
+  const N=700,pos=new Float32Array(N*3);for(let i=0;i<N*3;i++)pos[i]=(Math.random()-.5)*36;
+  const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  const stars=new THREE.Points(pg,new THREE.PointsMaterial({color:0xffffff,size:.04,transparent:true,opacity:.7}));s.add(stars);
+  let sc=0,t=0,mx=0,my=0,vel=0,drag=false,lx=0,pulse=0;
+  function rs(){const w=innerWidth,h=innerHeight;r.setSize(w,h,false);c.aspect=w/h;c.updateProjectionMatrix();W.userData.mob=w<800}
+  addEventListener('resize',rs);rs();
+  addEventListener('scroll',()=>{sc=scrollY/(document.body.scrollHeight-innerHeight||1)},{passive:true});
+  addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;if(drag){vel=(e.clientX-lx)*.004;lx=e.clientX}});
+  addEventListener('pointerdown',e=>{drag=true;lx=e.clientX;pulse=1});
+  addEventListener('pointerup',()=>{drag=false});
+  (function loop(){
+    t+=.01;pulse*=.94;vel*=.95;
+    W.rotation.y+=.0025+vel+Math.abs(sc-(W.userData.ps||0))*2;W.userData.ps=sc;
+    W.rotation.x+=((my*.6)-W.rotation.x)*.05;
+    const mob=W.userData.mob,k=(mob?.6:1)*(1+pulse*.06);
+    W.scale.setScalar(k*(1+sc*.35));
+    W.position.x+=(((mob?0:3.2)-mx*(mob?0:1.2)-sc*(mob?0:2.5))-W.position.x)*.05;
+    W.position.y=mob?-.8:0;
+    ring.rotation.z=t*.5;sat.position.set(Math.cos(t*2)*(R+.9),Math.sin(t*2)*(R+.9),0);
+    stars.rotation.y=t*.03+mx*.2;stars.rotation.x=my*.1;
+    r.render(s,c);requestAnimationFrame(loop)})();
+})();
+
+/* ===== MÓDULO 2: ANIMACIONES AL SCROLL ===== */
+(function(){
+  if(!window.gsap)return;gsap.registerPlugin(ScrollTrigger);
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  gsap.utils.toArray('.rv').forEach(e=>gsap.to(e,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:e,start:'top 85%'}}));
+  gsap.from('.hero > *',{opacity:0,y:30,stagger:.18,duration:1,ease:'power3.out'});
+  document.querySelectorAll('.tilt').forEach(el=>{
+    el.addEventListener('mousemove',e=>{const b=el.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;el.style.transform=`perspective(600px) rotateY(${x*14}deg) rotateX(${-y*14}deg) translateY(-4px)`});
+    el.addEventListener('mouseleave',()=>el.style.transform='');
+  });
+})();
+
+/* ===== MÓDULO 3: COMENTARIOS (listo para conectar Supabase u otro servicio) ===== */
+const localComments=[{n:'María P.',t:'Muy claro y fácil de entender. ¡Gracias!'}];
+async function fetchComments(){
+  // TODO: const {data}=await supabase.from('comments').select('*').order('created_at',{ascending:false}); return data;
+  return localComments;
+}
+async function postComment(name,text){
+  // TODO: await supabase.from('comments').insert({name,text});
+  localComments.unshift({n:name,t:text});
+}
+async function renderComments(){
+  const list=await fetchComments(),box=document.getElementById('cmList');box.innerHTML='';
+  list.forEach(c=>{const d=document.createElement('div');d.className='cm';const b=document.createElement('b');b.textContent=c.n||c.name;const p=document.createElement('div');p.textContent=c.t||c.text;d.append(b,p);box.append(d)});
+}
+async function submitComment(){
+  const n=document.getElementById('cmName').value.trim(),t=document.getElementById('cmText').value.trim();
+  if(!n||!t)return;await postComment(n,t);document.getElementById('cmText').value='';renderComments();
+}
+renderComments();
+
+/* ===== MÓDULO 4: CHATBOT =====
+ REGLAS INTERNAS DE LA IA (SYSTEM PROMPT; deben ir en el servidor, api/chat.js):
+ - Sé extremadamente empático, cálido y usa lenguaje sencillo, sin tecnicismos innecesarios.
+ - Basa tus respuestas estrictamente en el marco legal peruano vigente (Constitución, Código Civil, Código Penal, Código Procesal, normas laborales, etc.).
+ - Prohibido inventar información: si no estás seguro, dilo y recomienda un abogado colegiado. Cero alucinaciones.
+ - Responde también saludos y conversación general con amabilidad.
+ - Recuerda siempre que tu orientación es general y no reemplaza a un abogado colegiado.
+ - En riesgo de violencia o peligro, indica llamar al 105 o al 100.
+*/
+const DISCLAIMER='Esta plataforma brinda orientación jurídica general y no reemplaza el patrocinio de un abogado colegiado.';
+const hist=[];
+const msgs=document.getElementById('msgs');
+function addMsg(t,who){const d=document.createElement('div');d.className='m '+who;d.textContent=t;msgs.append(d);msgs.scrollTop=msgs.scrollHeight;return d}
+function openChat(){const c=document.getElementById('chat');c.classList.toggle('on');if(c.classList.contains('on')&&!msgs.children.length)addMsg('¡Hola! Soy tu asistente de Legalis Click Perú. ⚖️\n\n'+DISCLAIMER+'\n\n¿En qué puedo ayudarte hoy?','bot')}
+function quick(a){document.getElementById('cin').value='Tengo una consulta sobre '+a;send()}
+async function send(){
+  const i=document.getElementById('cin'),t=i.value.trim();if(!t)return;i.value='';
+  addMsg(t,'me');hist.push({role:'user',content:t});
+  const w=addMsg('Escribiendo…','bot');
+  try{
+    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist.slice(-12)})});
+    if(!res.ok)throw new Error(res.status);
+    const j=await res.json();w.textContent=j.reply;hist.push({role:'assistant',content:j.reply});
+  }catch(e){w.textContent='El asistente no está conectado todavía. Mientras tanto, si es una emergencia llama al 105 o al 100.'}
+  saveChatHistory();
+}
+async function saveChatHistory(){
+  // TODO (opcional): await supabase.from('chat_history').insert({messages:hist});
+}
+</script>
+</body>
+</html>
