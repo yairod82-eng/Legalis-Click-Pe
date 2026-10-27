@@ -10,7 +10,8 @@ Reglas obligatorias:
 6. Si la persona describe peligro, violencia o una emergencia, indícale llamar de inmediato al 105 (Policía) o al 100 (violencia familiar).
 7. Responde en español, de forma clara y ordenada, en pocos párrafos.`;
 
-const MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite'];
+// Se prueban en orden; si uno no existe (404), pasa al siguiente.
+const MODELS = ['gemini-flash-latest', 'gemini-3.8-flash', 'gemini-3.5-flash-lite', 'gemini-3.1-flash-lite'];
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -44,7 +45,7 @@ module.exports = async (req, res) => {
           body: JSON.stringify({
             systemInstruction: { parts: [{ text: SYSTEM }] },
             contents,
-            generationConfig: { temperature: 0.4, maxOutputTokens: 900 }
+            generationConfig: { temperature: 0.4, maxOutputTokens: 2048 }
           })
         }
       );
