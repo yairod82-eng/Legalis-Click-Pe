@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--mut);padding:40px 5vw 100px;font-size:.85re
 <body>
 <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gA" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#5ec8ff"/><stop offset="1" stop-color="#1e63e9"/></linearGradient><linearGradient id="gB" x1="0" x2="1"><stop offset="0" stop-color="#0a1f44"/><stop offset="1" stop-color="#1e63e9"/></linearGradient></defs></svg>
 <canvas id="bg" aria-hidden="true"></canvas>
-<nav class="nav"><b>LEGALIS CLICK</b><div><a href="#emergencia">Emergencias</a><a href="#enlaces">Enlaces</a><a href="#faq">FAQ</a><a href="#opiniones">Opiniones</a></div></nav>
+<nav class="nav"><b>LEGALIS CLICK</b><div><a href="#emergencia">Emergencias</a><a href="#enlaces">Enlaces</a><a href="#faq">FAQ</a><a href="#nosotros">Nosotros</a><a href="#opiniones">Opiniones</a></div></nav>
 
 <header class="hero" id="inicio">
   <!-- VIDEO IA (opcional): <video autoplay muted loop playsinline src="media/hero.mp4"></video> -->
@@ -96,7 +96,17 @@ footer{text-align:center;color:var(--mut);padding:40px 5vw 100px;font-size:.85re
   </div>
 </section>
 
-<section class="split rv">
+<section id="nosotros" class="rv">
+  <h2>Nosotros</h2><p class="sub">Conoce quiénes somos y hacia dónde vamos.</p>
+  <details open><summary>¿Quiénes somos?</summary><p>Legalis Click Perú es un emprendimiento de asesoría jurídica que acerca la orientación legal a las personas de forma clara, rápida y accesible, combinando experiencia en derecho con herramientas digitales.</p></details>
+  <details><summary>Misión</summary><p>Brindar orientación jurídica confiable y comprensible para que cada persona conozca sus derechos y sepa cómo ejercerlos, con un trato cercano y profesional.</p></details>
+  <details><summary>Visión</summary><p>Ser una plataforma legal digital de referencia en el Perú, reconocida por facilitar el acceso a la justicia y por la calidad de su asesoría.</p></details>
+</section>
+<style>
+  #nosotros details{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px 20px;margin:12px 0}
+  #nosotros summary{cursor:pointer;font-weight:600;font-size:1.1rem}
+  #nosotros details p{margin:12px 0 0;opacity:.85}
+</style>
   <div class="ph"><div id="juez3d"></div></div>
   <div><h2>Justicia en movimiento</h2><p class="sub">Haz scroll: el mundo 3D del fondo responde a tu mouse, tu dedo y tu scroll.</p></div>
 </section>
