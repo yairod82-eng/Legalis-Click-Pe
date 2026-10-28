@@ -56,7 +56,7 @@ footer{text-align:center;color:var(--mut);padding:40px 5vw 100px;font-size:.85re
 <body>
 <svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gA" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#5ec8ff"/><stop offset="1" stop-color="#1e63e9"/></linearGradient><linearGradient id="gB" x1="0" x2="1"><stop offset="0" stop-color="#0a1f44"/><stop offset="1" stop-color="#1e63e9"/></linearGradient></defs></svg>
 <canvas id="bg" aria-hidden="true"></canvas>
-<nav class="nav"><b>LEGALIS CLICK</b><div><a href="#emergencia">Emergencias</a><a href="#enlaces">Enlaces</a><a href="#faq">FAQ</a><a href="#nosotros">Nosotros</a><a href="#opiniones">Opiniones</a></div></nav>
+<nav class="nav"><b>LEGALIS CLICK</b><div><a href="#emergencia">Emergencias</a><a href="#enlaces">Enlaces</a><a href="#faq">FAQ</a><a href="#nosotros">Nosotros</a><a href="#equipo">Equipo</a><a href="#opiniones">Opiniones</a></div></nav>
 
 <header class="hero" id="inicio">
   <!-- VIDEO IA (opcional): <video autoplay muted loop playsinline src="media/hero.mp4"></video> -->
@@ -117,7 +117,32 @@ footer{text-align:center;color:var(--mut);padding:40px 5vw 100px;font-size:.85re
 </style>
 <script src="juez.js"></script>
 
-<section id="faq" class="rv">
+<section id="equipo" class="rv">
+  <h2>Nuestro equipo</h2><p class="sub">Las personas detrás de Legalis Click Perú.</p>
+  <div class="team">
+    <div class="member"><img src="foto1.jpg" alt="Integrante 1"><h3>Morales Ramirez Dayana </h3><small>Investigador Juridico/a</small></div>
+    <div class="member"><img src="foto2.jpg" alt="Integrante 2"><h3>Osco Diaz Yair</h3><small>Desarollador/a</small></div>
+     <div class="member"><img src="foto2.jpg" alt="Integrante 3"><h3>Bayona Martinez Nicoll</h3><small>Contenido y Comunicacion/a</small></div>
+ <div class="member"><img src="foto2.jpg" alt="Integrante 4"><h3>Elguera Rufino Eladia</h3><small>Diseñador de Plataforma/a</small></div>
+ <div class="member"><img src="foto2.jpg" alt="Integrante 5"><h3>Julca Silva Kely</h3><small>Coordinador de Proyecto/a</small></div>
+   <div class="member"><img src="foto2.jpg" alt="Integrante 6"><h3>Zamora Ramirez Gabriela</h3><small>Pruebas y Control de Calidad/a</small></div>  
+  </div>
+</section>
+
+<section id="video" class="rv">
+  <h2>Conócenos</h2><p class="sub">Mira cómo podemos ayudarte.</p>
+  <video class="vid" src="video.mp4" controls playsinline preload="metadata"></video>
+</section>
+
+<style>
+  .team{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-top:18px}
+  .member{width:200px;text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px}
+  .member img{width:130px;height:130px;object-fit:cover;border-radius:50%;border:3px solid rgba(94,200,255,.6)}
+  .member h3{margin:12px 0 2px;font-size:1.05rem}
+  .member small{opacity:.75}
+  .vid{width:100%;max-width:760px;display:block;margin:18px auto 0;border-radius:16px;border:1px solid rgba(255,255,255,.14)}
+</style>
+  <section id="faq" class="rv">
   <h2>Preguntas frecuentes</h2><p class="sub">Respuestas generales; para tu caso concreto consulta a un abogado colegiado.</p>
   <details><summary>¿Cómo se solicita una pensión de alimentos?</summary><p>Puedes acudir al Juzgado de Paz Letrado o a un Centro de Conciliación. La Defensa Pública y las DEMUNA orientan gratis. Lleva DNI y partida de nacimiento del menor.</p></details>
   <details><summary>¿Qué hago si me despidieron sin causa justa?</summary><p>Se considera despido arbitrario. Puedes reclamar indemnización o reposición ante el Poder Judicial; existen plazos cortos (30 días hábiles para accionar), así que actúa pronto y consulta con un abogado laboralista o el Ministerio de Trabajo.</p></details>
