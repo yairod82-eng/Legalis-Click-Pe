@@ -4,353 +4,443 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Legalis Click Perú</title>
+<script>document.documentElement.classList.add("js")</script>
 <style>
-:root{--bg:#04080f;--navy:#0a1f44;--blue:#1e63e9;--sky:#5ec8ff;--white:#f4f8ff;--mut:#9db4d6;--card:rgba(255,255,255,.05);--bd:rgba(94,200,255,.25);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-*,*::before,*::after{box-sizing:inherit}
-html{scroll-behavior:smooth;scroll-padding-top:70px}
-body{margin:0;background:var(--bg);color:var(--white);font-family:Georgia,'Times New Roman',serif;line-height:1.6;overflow-x:hidden}
-h1,h2,h3,button,.nav{font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
-#bg{position:fixed;inset:0;z-index:0}
-main,header,footer{position:relative;z-index:1}
-.nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(4,8,15,.7);backdrop-filter:blur(10px)}
-.nav b{letter-spacing:.12em}.nav a{color:var(--mut);text-decoration:none;margin-left:18px;font-size:.9rem}.nav a:hover{color:var(--sky)}
-@media(max-width:700px){.nav a{display:none}}
-section{padding:90px 5vw;max-width:1100px;margin:auto}
-.hero{min-height:100vh;display:grid;align-content:center;text-align:center;justify-items:center;gap:20px}
-.hero h1{font-size:clamp(2.4rem,8vw,5.5rem);margin:0;background:linear-gradient(90deg,var(--white),var(--sky),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{max-width:620px;color:var(--mut)}
-.disc{border:1px solid var(--sky);background:rgba(30,99,233,.18);padding:14px 20px;border-radius:14px;max-width:640px;font-weight:600;box-shadow:0 0 30px rgba(94,200,255,.25)}
-.btn{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--sky));color:#031022;font-weight:700;border:0;padding:13px 26px;border-radius:40px;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
-.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 30px rgba(94,200,255,.4)}
-h2{font-size:clamp(1.7rem,4vw,2.6rem);margin:0 0 8px}.sub{color:var(--mut);margin:0 0 32px}
+:root{--bg:#0a0e1a;--card:#111827;--txt:#f5f7fb;--mut:#a3aec2;--blue:#3b82f6;--gold:#e8b04a;--line:rgba(255,255,255,.12);--slate:#2a3345;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{line-height:1.1;margin:0}
+a{color:inherit}
+.wrap{max-width:1100px;margin:auto;padding:60px 6vw}
+h2{font-size:clamp(1.6rem,3.5vw,2.3rem);margin-bottom:8px}
+.sub{color:var(--mut);margin:0 0 26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--bg);font:600 .95rem system-ui,sans-serif;border:0;border-radius:999px;padding:12px 26px;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(59,130,246,.4)}
+.btn.alt{background:var(--slate);color:#fff}
+/* Barra de anuncio (estilo Juris.pe) */
+.ann{background:linear-gradient(90deg,#14397a,#1e4fa3);text-align:center;padding:9px 5vw;font-size:.9rem;font-weight:600}
+.ann a{color:var(--gold)}
+/* Cabecera en dos filas (estilo Juris.pe) */
+.top{background:#0f1524;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.r1{max-width:1200px;margin:auto;display:flex;align-items:center;gap:18px;padding:14px 5vw}
+.logo{font-weight:800;font-size:1.4rem;text-decoration:none;white-space:nowrap}.logo span{color:var(--gold)}
+.sr{flex:1;display:flex;max-width:520px;margin:0 auto;background:#fff;border-radius:999px;overflow:hidden}
+.sr input{flex:1;border:0;background:transparent;color:#111;padding:11px 18px;font:inherit;font-size:.9rem;min-width:0;outline:0}
+.sr button{border:0;background:transparent;cursor:pointer;padding:0 16px;font-size:1rem}
+.soc{display:flex;gap:8px}
+.soc a{width:30px;height:30px;border-radius:50%;background:#fff;color:#0a0e1a;display:grid;place-items:center;font-size:.75rem;font-weight:800;text-decoration:none}
+.menu{display:flex;justify-content:center;gap:34px;padding:10px 5vw 12px;overflow-x:auto;white-space:nowrap}
+.menu a{text-decoration:none;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;padding:4px 0;border-bottom:2px solid transparent}
+.menu a:hover,.menu a.on{color:var(--gold);border-color:var(--gold)}
+@media(max-width:860px){.sr,.soc,.r1 .btn.alt{display:none}.r1{justify-content:space-between}.menu{justify-content:flex-start;gap:22px}}
+/* Vistas (páginas) */
+.js .view{display:none}.js .view.on{display:block;animation:fi .6s ease}
+@keyframes fi{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+/* Banner de página con patrón animado (colores Juztina) */
+.pb,.hero{position:relative;overflow:hidden;background:radial-gradient(circle at 80% 30%,#10264f 0,#0a0e1a 60%)}
+.pb::before,.hero::before{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='110'%3E%3Cpath d='M12 12h24a30 30 0 0 1 0 60H12z' fill='none' stroke='%23e8b04a' stroke-opacity='.4' stroke-width='1.5'/%3E%3Cpath d='M12 12h24a30 30 0 0 1 0 60' fill='none' stroke='%233b82f6' stroke-opacity='.75' stroke-width='1.5'/%3E%3C/svg%3E");-webkit-mask-image:linear-gradient(90deg,transparent 25%,#000 85%);mask-image:linear-gradient(90deg,transparent 25%,#000 85%);animation:dr 24s linear infinite}
+@keyframes dr{to{background-position:90px 110px}}
+.pb{padding:70px 6vw;text-align:center}.pb h1{font-size:clamp(2.2rem,6vw,3.6rem);position:relative}
+.hero{min-height:78vh;display:flex;flex-direction:column;justify-content:center;gap:22px;padding:70px 6vw}
+.hero>*{position:relative}.hero h1{font-size:clamp(2.5rem,7vw,5.2rem);font-weight:800;letter-spacing:-.03em;max-width:880px}
+.hero p{font-size:clamp(1rem,2vw,1.25rem);max-width:600px;margin:0}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.disc{font-size:.85rem;color:var(--mut);max-width:540px;border-left:3px solid var(--gold);padding-left:12px}
+.orb{position:absolute;border-radius:50%;background:linear-gradient(#3b82f6,#e8b04a);opacity:.85;animation:fl 6s ease-in-out infinite}
+.o1{width:110px;height:110px;right:36%;top:18%}.o2{width:120px;height:120px;right:20%;bottom:14%;animation-delay:-3s}
+@keyframes fl{50%{transform:translateY(-18px)}}
+@media(max-width:700px){.o1,.o2{display:none}}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:22px;text-decoration:none;color:inherit;display:block;transition:transform .25s,border-color .25s,background .25s;transform-style:preserve-3d}
-.card:hover{border-color:var(--sky);background:rgba(30,99,233,.2)}
-.num{font-family:system-ui,sans-serif;font-size:2.8rem;font-weight:800;color:var(--sky);line-height:1}
-.card small{color:var(--mut)}
-.art{width:100%;max-width:240px;filter:drop-shadow(0 10px 30px rgba(94,200,255,.45));animation:fl 4s ease-in-out infinite}.gal{text-align:center}.gal .card{display:grid;place-items:center;gap:8px}.ph{display:grid;place-items:center;min-height:200px;border:2px dashed var(--bd);border-radius:18px;color:var(--mut);text-align:center;padding:16px;background:repeating-conic-gradient(rgba(255,255,255,.04) 0 25%,transparent 0 50%) 0 0/20px 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;text-decoration:none;display:block;transition:transform .25s,border-color .25s}
+.card:hover{border-color:var(--gold);transform:translateY(-5px)}
+.num{font-size:2.6rem;font-weight:800;color:var(--gold);line-height:1}.card small{color:var(--mut)}
+details{background:#f1f3f7;color:#0b2a5b;border:1px solid var(--line);border-radius:6px;margin:12px 0;padding:2px 20px}
+summary{cursor:pointer;padding:16px 0;font-weight:700;font-size:1.15rem;list-style:none}
+summary::after{content:'+';float:right;color:#8a93a5;font-size:1.4rem}details[open] summary::after{content:'–'}
+details p,details li{color:#334155}details p{margin:0 0 16px}details ul{margin:0 0 16px;padding-left:20px}
 .split{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:center}
-.ph svg{width:100px;height:100px;stroke:var(--sky);fill:none;stroke-width:2;animation:fl 4s ease-in-out infinite}
-@keyframes fl{50%{transform:translateY(-10px) rotate(3deg)}}
-details{background:var(--card);border:1px solid var(--bd);border-radius:14px;margin-bottom:10px;padding:4px 18px}
-summary{cursor:pointer;padding:14px 0;font-weight:600;font-family:system-ui,sans-serif;list-style:none}
-summary::after{content:'+';float:right;color:var(--sky);font-size:1.4rem}details[open] summary::after{content:'–'}
-details p{margin:0 0 14px;color:var(--mut)}
-textarea,input{width:100%;background:rgba(255,255,255,.07);border:1px solid var(--bd);color:var(--white);border-radius:12px;padding:12px;font:inherit}
+#juez3d{width:100%;height:340px}#juez3d canvas{width:100%!important;height:100%!important;display:block}
+.team{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-top:18px}
+.member{width:200px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
+.member img{width:130px;height:130px;object-fit:cover;border-radius:50%;border:3px solid var(--gold)}
+.member h3{margin:12px 0 2px;font-size:1.05rem}.member small{color:var(--mut)}
+.vid{width:100%;max-width:760px;display:block;margin:18px auto 0;border-radius:18px;border:1px solid var(--line)}
+input,textarea,select{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--txt);border-radius:12px;padding:12px;font:inherit}
+select option{color:#000}
+.rf{display:grid;gap:12px;max-width:640px;margin:0 auto}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:.88rem;color:var(--mut)}.chk input{width:auto;margin-top:4px}
+.chk a,footer a,.gl{color:var(--gold)}
+#rMsg{margin:0;min-height:1.4em}
 .cm{border-left:3px solid var(--blue);padding:10px 14px;margin:10px 0;background:var(--card);border-radius:0 12px 12px 0}
-.rv{opacity:0;transform:translateY(40px)}
-#fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;width:62px;height:62px;border-radius:50%;font-size:1.6rem;padding:0}
-#chat{position:fixed;right:14px;bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:30;width:min(380px,calc(100vw - 28px));height:min(560px,70vh);background:#071228;border:1px solid var(--sky);border-radius:20px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6)}
-#chat.on{display:flex}
-#chat header{padding:12px 16px;background:var(--navy);font-family:system-ui,sans-serif;font-weight:700}
+footer{background:#0f1524;border-top:1px solid var(--line);text-align:center;color:var(--mut);padding:34px 6vw 100px;font-size:.85rem}
+.js .rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
+#fab{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;width:62px;height:62px;border-radius:50%;font-size:1.5rem;padding:0}
+#chat{position:fixed;right:14px;bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:30;width:min(380px,calc(100vw - 28px));height:min(560px,70vh);background:#0d1424;border:1px solid var(--line);border-radius:20px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+#chat.on{display:flex}.ch{padding:12px 16px;background:var(--card);font-weight:700}
 #msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
 .m{max-width:85%;padding:10px 14px;border-radius:16px;font-size:.92rem;white-space:pre-wrap}
-.bot{background:var(--navy);align-self:flex-start}.me{background:var(--blue);align-self:flex-end}
+.bot{background:#1b2437;align-self:flex-start}.me{background:var(--blue);align-self:flex-end}
 .qk{display:flex;flex-wrap:wrap;gap:6px;padding:0 12px 8px}
-.qk button{background:transparent;color:var(--sky);border:1px solid var(--sky);border-radius:20px;padding:6px 12px;cursor:pointer;font-size:.8rem}
-.row{display:flex;gap:8px;padding:10px}
-footer{text-align:center;color:var(--mut);padding:40px 5vw 100px;font-size:.85rem}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.qk button{background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:20px;padding:6px 12px;cursor:pointer;font-size:.8rem}
+.row{display:flex;gap:8px;padding:10px}.row .btn{padding:10px 18px}.cn{font-size:.75rem;color:var(--mut);padding:0 12px 10px}
+
+.sv{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.sv a{text-decoration:none;text-align:center;transition:transform .25s}.sv a:hover{transform:translateY(-6px)}
+.sv .ic{background:#fff;border-radius:16px;font-size:3.2rem;padding:24px 0;line-height:1}
+.sv b{display:block;background:#000;border-radius:10px;padding:10px;margin-top:10px;letter-spacing:.08em;font-size:.8rem;text-transform:uppercase}
+.stripe{width:min(280px,70%);aspect-ratio:3/4;margin:auto;border-radius:46% 54% 42% 58%/52% 44% 56% 48%;background:repeating-linear-gradient(160deg,transparent 0 9px,var(--bg) 9px 18px),linear-gradient(180deg,#e8b04a 45%,#3b82f6 55%);animation:fl 7s ease-in-out infinite}
+.who{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.who h3{font-size:1.4rem}.who p{color:var(--mut);margin:6px 0 0}
+.drop{display:grid;place-items:center;gap:6px;text-align:center;padding:34px 16px;border:2px dashed rgba(232,176,74,.6);border-radius:18px;cursor:pointer;background:rgba(255,255,255,.03);transition:background .2s}
+.drop:hover,.drop.ov{background:rgba(232,176,74,.1)}.drop small{color:var(--mut)}
+.fi{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-top:10px}
+.fi button{background:transparent;color:#fff;border:0;cursor:pointer;font-size:1rem}
+.rd{white-space:pre-wrap;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;max-height:420px;overflow:auto;font-size:.92rem;color:#d6dcea}
+mark{background:var(--gold);color:#000;border-radius:3px}
+footer.ft{background:#0f1524;text-align:left;padding:46px 6vw 100px}
+.ftg{max-width:1100px;margin:auto;display:grid;gap:28px;grid-template-columns:1fr 1.4fr 1fr;align-items:start}
+@media(max-width:860px){.ftg{grid-template-columns:1fr}}
+.lr{display:flex;gap:14px;border:1px solid var(--line);text-decoration:none;color:var(--txt)}
+.lr .bk{display:grid;place-items:center;gap:4px;padding:10px;background:#fff;color:#0a0e1a;font-size:1.8rem;text-align:center;min-width:96px}.lr .bk small{font-size:.65rem;font-weight:700}
+.lr p{margin:0;padding:10px 10px 10px 0;font-size:.85rem;color:var(--mut)}
+.fl{display:grid;gap:10px;justify-items:end}@media(max-width:860px){.fl{justify-items:start}}
+.fl a{text-decoration:none;font-weight:600;color:#fff}.fl a:hover{color:var(--gold)}
+.cp{max-width:1100px;margin:30px auto 0;padding-top:20px;border-top:1px solid var(--line);text-align:center}
+#ck{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;background:#000;padding:14px 5vw;font-size:.88rem}
+#ck a{color:var(--gold)}#ck .btn{background:transparent;color:#fff;border:1px solid #fff;padding:8px 20px}
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="gA" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#5ec8ff"/><stop offset="1" stop-color="#1e63e9"/></linearGradient><linearGradient id="gB" x1="0" x2="1"><stop offset="0" stop-color="#0a1f44"/><stop offset="1" stop-color="#1e63e9"/></linearGradient></defs></svg>
-<canvas id="bg" aria-hidden="true"></canvas>
-<nav class="nav"><b>LEGALIS CLICK</b><div><a href="#emergencia">Emergencias</a><a href="#enlaces">Enlaces</a><a href="#faq">FAQ</a><a href="#nosotros">Nosotros</a><a href="#citas">Citas</a><a href="#reclamaciones">Reclamaciones</a><a href="#equipo">Equipo</a><a href="#opiniones">Opiniones</a></div></nav>
-
-<header class="hero" id="inicio">
-  <!-- VIDEO IA (opcional): <video autoplay muted loop playsinline src="media/hero.mp4"></video> -->
-  <h1>Legalis Click Perú</h1>
-  <p>Orientación jurídica clara, empática y al alcance de un clic.</p>
-  <div class="disc" role="note">⚖️ Esta plataforma brinda orientación jurídica general y no reemplaza el patrocinio de un abogado colegiado.</div>
-  <div><a class="btn" href="#emergencia">Ver emergencias</a> <button class="btn" onclick="openChat()">Consultar ahora</button></div>
+<div class="ann">NUEVO: asesoría jurídica inicial con cita en línea. <a href="#citas">Agenda aquí</a></div>
+<header class="top">
+  <div class="r1">
+    <a class="logo" href="#inicio">LEGALIS <span>CLICK</span></a>
+    <form class="sr" onsubmit="return searchGo(event)"><input id="sq" placeholder="¿Qué consulta legal tienes hoy?"><button aria-label="Buscar">🔍</button></form>
+    <button class="btn alt" onclick="openChat(true)">Consultar</button>
+    <a class="btn" href="#citas">Agenda tu cita</a>
+    <div class="soc"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">ig</a><a href="#" aria-label="TikTok">tk</a></div>
+  </div>
+  <nav class="menu" id="menu"><a href="#inicio">Inicio</a><a href="#nosotros">Nosotros</a><a href="#emergencias">Emergencias</a><a href="#enlaces">Enlaces</a><a href="#faq">FAQ</a><a href="#citas">Citas</a><a href="#expedientes">Expedientes</a><a href="#reclamaciones">Reclamaciones</a><a href="#opiniones">Opiniones</a></nav>
 </header>
 
 <main>
-<section class="split rv">
-  <div><h2>Tus derechos, sin complicaciones</h2><p class="sub">Familia, penal, laboral y civil explicados en lenguaje sencillo, con base en la normativa peruana vigente.</p></div>
-  <div style="display:grid;place-items:center"><svg class="art" viewBox="0 0 200 200" role="img" aria-label="Mazo de juez"><g transform="rotate(-35 100 95)"><rect x="52" y="38" width="96" height="40" rx="9" fill="url(#gA)"/><rect x="44" y="42" width="14" height="32" rx="4" fill="url(#gB)"/><rect x="142" y="42" width="14" height="32" rx="4" fill="url(#gB)"/><rect x="93" y="78" width="14" height="104" rx="6" fill="url(#gB)"/></g><ellipse cx="108" cy="186" rx="62" ry="9" fill="url(#gA)"/><rect x="46" y="170" width="124" height="14" rx="5" fill="url(#gB)"/></svg></div>
-</section>
-
-<section class="gal rv"><h2>Justicia al alcance de todos</h2><p class="sub">Familia, trabajo, penal y civil, con el respaldo de la ley peruana.</p>
-<div class="grid"><div class="card"><svg class="art" viewBox="0 0 200 200" role="img" aria-label="Mazo de juez"><g transform="rotate(-35 100 95)"><rect x="52" y="38" width="96" height="40" rx="9" fill="url(#gA)"/><rect x="44" y="42" width="14" height="32" rx="4" fill="url(#gB)"/><rect x="142" y="42" width="14" height="32" rx="4" fill="url(#gB)"/><rect x="93" y="78" width="14" height="104" rx="6" fill="url(#gB)"/></g><ellipse cx="108" cy="186" rx="62" ry="9" fill="url(#gA)"/><rect x="46" y="170" width="124" height="14" rx="5" fill="url(#gB)"/></svg><b>Mazo</b><small>Tus procesos, resueltos con orden</small></div><div class="card"><svg class="art" viewBox="0 0 200 200" role="img" aria-label="Balanza de la justicia" fill="none" stroke="url(#gA)" stroke-width="5" stroke-linecap="round"><path d="M100 28v140M64 170h72M30 56h140M100 28m-6 0a6 6 0 1 0 12 0a6 6 0 1 0-12 0"/><path d="M30 56l-22 52h44zM170 56l-22 52h44z"/><path d="M8 108a22 12 0 0 0 44 0M148 108a22 12 0 0 0 44 0"/></svg><b>Balanza</b><small>Equilibrio e igualdad ante la ley</small></div><div class="card"><svg class="art" viewBox="0 0 200 200" role="img" aria-label="Código y Constitución"><rect x="40" y="30" width="120" height="140" rx="10" fill="url(#gB)" stroke="#5ec8ff" stroke-width="3"/><rect x="40" y="30" width="18" height="140" rx="6" fill="url(#gA)"/><g stroke="#f4f8ff" stroke-width="4" stroke-linecap="round"><path d="M76 70h66M76 90h66M76 110h44"/></g><circle cx="110" cy="142" r="12" fill="none" stroke="#5ec8ff" stroke-width="3"/></svg><b>Código y Constitución</b><small>Base de toda orientación</small></div></div></section>
-<section id="emergencia" class="rv">
-  <h2>Números de emergencia</h2><p class="sub">Toca una tarjeta para marcar directamente desde tu celular.</p>
-  <div class="grid">
-    <a class="card tilt" href="tel:105"><div class="num">105</div>Policía Nacional<br><small>Llamar ahora</small></a>
-    <a class="card tilt" href="tel:116"><div class="num">116</div>Bomberos<br><small>Llamar ahora</small></a>
-    <a class="card tilt" href="tel:106"><div class="num">106</div>SAMU<br><small>Llamar ahora</small></a>
-    <a class="card tilt" href="tel:119"><div class="num">119</div>Emergencias<br><small>Llamar ahora</small></a>
-    <a class="card tilt" href="tel:100"><div class="num">100</div>Violencia familiar<br><small>Llamar ahora</small></a>
+<!-- INICIO -->
+<div class="view" id="inicio">
+  <div class="hero"><div class="orb o1"></div><div class="orb o2"></div>
+    <h1>Orientación jurídica clara, en un clic</h1>
+    <p>Asesoría legal con apoyo digital, pensada para la normativa peruana.</p>
+    <div class="btns"><a class="btn" href="#citas">Agenda tu cita ›</a><button class="btn alt" onclick="openChat(true)">Consultar ahora</button></div>
+    <div class="disc">⚖️ Orientación jurídica general: no reemplaza el patrocinio de un abogado colegiado.</div>
   </div>
-</section>
+  <div class="wrap split rv"><div><h2>Justicia en movimiento</h2><p class="sub">Nuestro juez virtual te da la bienvenida: mueve el mouse o el dedo y te seguirá con la mirada.</p></div><div id="juez3d"></div></div>
+  <div class="wrap rv"><h2>Números de emergencia</h2><p class="sub">Toca una tarjeta para marcar desde tu celular.</p>
+    <div class="grid">
+      <a class="card" href="tel:105"><div class="num">105</div>Policía Nacional</a><a class="card" href="tel:116"><div class="num">116</div>Bomberos</a>
+      <a class="card" href="tel:106"><div class="num">106</div>SAMU</a><a class="card" href="tel:119"><div class="num">119</div>Emergencias</a>
+      <a class="card" href="tel:100"><div class="num">100</div>Violencia familiar</a>
+    </div></div>
+  <div class="wrap rv"><h2>Conoce nuestro servicio</h2><p class="sub">Todo lo que necesitas en un solo lugar.</p>
+    <div class="sv">
+      <a href="#faq"><div class="ic">⚖️</div><b>Orientación</b></a><a href="#emergencias"><div class="ic">🚨</div><b>Emergencias</b></a>
+      <a href="#citas"><div class="ic">📅</div><b>Citas en línea</b></a><a href="#expedientes"><div class="ic">📂</div><b>Expedientes</b></a>
+      <a href="#reclamaciones"><div class="ic">📖</div><b>Reclamaciones</b></a>
+    </div></div>
+  <div class="wrap split rv"><div><h2>Hecha a medida para el sistema jurídico peruano</h2><p class="sub" style="margin-bottom:20px">Orientación basada en la normativa peruana vigente, explicada en lenguaje sencillo y con enlaces a las entidades oficiales.</p><a class="btn" href="#nosotros">Conoce más ›</a></div><div class="stripe"></div></div>
+  <div class="wrap rv"><h2 style="text-align:center;margin-bottom:34px">¿Para quién es Legalis Click?</h2>
+    <div class="who"><div><h3>Personas</h3><p>Quienes necesitan entender sus derechos y los primeros pasos de un trámite.</p></div><div><h3>Familias</h3><p>Pensión de alimentos, denuncias y orientación sobre defensa gratuita.</p></div><div><h3>Trabajadores</h3><p>Dudas sobre despido, plazos y a dónde acudir.</p></div><div><h3>Estudiantes</h3><p>Apoyo para validar conceptos y revisar documentos de un expediente.</p></div></div></div>
+</div>
 
-<section id="enlaces" class="rv">
-  <h2>Enlaces oficiales y asistencia gratuita</h2><p class="sub">Se abren en la página oficial de cada entidad.</p>
-  <div class="grid">
-    <a class="card tilt" target="_blank" rel="noopener noreferrer" href="https://cej.pj.gob.pe/cej/forms/busquedaform.html"><h3>Poder Judicial · CEJ</h3><small>Consulta de expedientes</small></a>
-    <a class="card tilt" target="_blank" rel="noopener noreferrer" href="https://www.sunarp.gob.pe/"><h3>SUNARP</h3><small>Registros públicos</small></a>
-    <a class="card tilt" target="_blank" rel="noopener noreferrer" href="https://www.gob.pe/institucion/reniec"><h3>RENIEC</h3><small>Identidad y DNI</small></a>
-    <a class="card tilt" target="_blank" rel="noopener noreferrer" href="https://www.gob.pe/institucion/minjus"><h3>Defensa Pública · MINJUS</h3><small>Abogado gratuito</small></a>
-    <a class="card tilt" target="_blank" rel="noopener noreferrer" href="https://www.gob.pe/institucion/mimp"><h3>DEMUNA · MIMP</h3><small>Defensoría del niño y adolescente</small></a>
+<!-- NOSOTROS -->
+<div class="view" id="nosotros">
+  <div class="pb"><h1>Nosotros</h1></div>
+  <div class="wrap">
+    <details open><summary>¿Quiénes somos?</summary><p>Legalis Click Perú es un emprendimiento de asesoría jurídica que acerca la orientación legal a las personas de forma clara, rápida y accesible, combinando experiencia en derecho con herramientas digitales.</p></details>
+    <details><summary>Misión</summary><p>Brindar orientación jurídica confiable y comprensible para que cada persona conozca sus derechos y sepa cómo ejercerlos, con un trato cercano y profesional.</p></details>
+    <details><summary>Visión</summary><p>Ser una plataforma legal digital de referencia en el Perú, reconocida por facilitar el acceso a la justicia y por la calidad de su asesoría.</p></details>
   </div>
-</section>
+  <div class="wrap rv" style="padding-top:0"><h2>Nuestro equipo</h2><p class="sub">Las personas detrás de Legalis Click Perú.</p>
+    <div class="team">
+      <div class="member"><img src="foto1.jpg.jpeg" alt="Morales Ramirez Dayana"><h3>Morales Ramirez Dayana</h3><small>Investigador Jurídico/a</small></div>
+      <div class="member"><img src="foto2.jpg.jpeg" alt="Osco Diaz Yair"><h3>Osco Diaz Yair</h3><small>Desarrollador/a</small></div>
+      <div class="member"><img src="foto3.jpg.jpeg" alt="Bayona Martinez Nicoll"><h3>Bayona Martinez Nicoll</h3><small>Contenido y Comunicación/a</small></div>
+      <div class="member"><img src="foto4.jpg.jpeg" alt="Elguera Rufino Eladia"><h3>Elguera Rufino Eladia</h3><small>Diseñador de Plataforma/a</small></div>
+      <div class="member"><img src="foto5.jpg.jpeg" alt="Julca Silva Kely"><h3>Julca Silva Kely</h3><small>Coordinador de Proyecto/a</small></div>
+      <div class="member"><img src="foto6.jpg.jpeg" alt="Zamora Ramirez Gabriela"><h3>Zamora Ramirez Gabriela</h3><small>Pruebas y Control de Calidad/a</small></div>
+    </div></div>
+  <div class="wrap rv" style="padding-top:0"><h2>Conócenos</h2><p class="sub">Mira cómo podemos ayudarte.</p><video class="vid" src="video.mp4" controls playsinline preload="metadata"></video></div>
+</div>
 
-<section id="nosotros" class="rv">
-  <h2>Nosotros</h2><p class="sub">Conoce quiénes somos y hacia dónde vamos.</p>
-  <details open><summary>¿Quiénes somos?</summary><p>Legalis Click Perú es un emprendimiento de asesoría jurídica que acerca la orientación legal a las personas de forma clara, rápida y accesible, combinando experiencia en derecho con herramientas digitales.</p></details>
-  <details><summary>Misión</summary><p>Brindar orientación jurídica confiable y comprensible para que cada persona conozca sus derechos y sepa cómo ejercerlos, con un trato cercano y profesional.</p></details>
-  <details><summary>Visión</summary><p>Ser una plataforma legal digital de referencia en el Perú, reconocida por facilitar el acceso a la justicia y por la calidad de su asesoría.</p></details>
-</section>
-<style>
-  #nosotros details{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px 20px;margin:12px 0}
-  #nosotros summary{cursor:pointer;font-weight:600;font-size:1.1rem}
-  #nosotros details p{margin:12px 0 0;opacity:.85}
-</style>
-  <section class="split rv">
-  <div class="ph"><div id="juez3d"></div></div>
-  <div><h2>Justicia en movimiento</h2><p class="sub">Haz scroll: el mundo 3D del fondo responde a tu mouse, tu dedo y tu scroll.</p></div>
-</section>
-<style>
-  .ph{border:none!important;background:none!important;min-height:340px}
-  #juez3d{width:100%;height:340px}
-  #juez3d canvas{width:100%!important;height:100%!important;display:block}
-</style>
-<script src="juez.js"></script>
+<!-- EMERGENCIAS -->
+<div class="view" id="emergencias">
+  <div class="pb"><h1>Números de emergencia</h1></div>
+  <div class="wrap"><p class="sub">Toca una tarjeta para marcar directamente desde tu celular.</p>
+    <div class="grid">
+      <a class="card" href="tel:105"><div class="num">105</div>Policía Nacional<br><small>Llamar ahora</small></a>
+      <a class="card" href="tel:116"><div class="num">116</div>Bomberos<br><small>Llamar ahora</small></a>
+      <a class="card" href="tel:106"><div class="num">106</div>SAMU<br><small>Llamar ahora</small></a>
+      <a class="card" href="tel:119"><div class="num">119</div>Emergencias<br><small>Llamar ahora</small></a>
+      <a class="card" href="tel:100"><div class="num">100</div>Violencia familiar<br><small>Llamar ahora</small></a>
+    </div></div>
+</div>
 
-<section id="equipo" class="rv">
-  <h2>Nuestro equipo</h2><p class="sub">Las personas detrás de Legalis Click Perú.</p>
-  <div class="team">
-        <div class="member"><img src="foto1.jpg.jpeg" alt="Integrante 1"><h3>Morales Ramirez Dayana</h3><small>Investigador Jurídico/a</small></div>
-    <div class="member"><img src="foto2.jpg.jpeg" alt="Integrante 2"><h3>Osco Diaz Yair</h3><small>Desarrollador/a</small></div>
-    <div class="member"><img src="foto3.jpg.jpeg" alt="Integrante 3"><h3>Bayona Martinez Nicoll</h3><small>Contenido y Comunicación/a</small></div>
-    <div class="member"><img src="foto4.jpg.jpeg" alt="Integrante 4"><h3>Elguera Rufino Eladia</h3><small>Diseñador de Plataforma/a</small></div>
-    <div class="member"><img src="foto5.jpg.jpeg" alt="Integrante 5"><h3>Julca Silva Kely</h3><small>Coordinador de Proyecto/a</small></div>
-    <div class="member"><img src="foto6.jpg.jpeg" alt="Integrante 6"><h3>Zamora Ramirez Gabriela</h3><small>Pruebas y Control de Calidad/a</small></div>  
+<!-- ENLACES -->
+<div class="view" id="enlaces">
+  <div class="pb"><h1>Enlaces oficiales y asistencia gratuita</h1></div>
+  <div class="wrap"><p class="sub">Se abren en la página oficial de cada entidad.</p>
+    <div class="grid">
+      <a class="card" target="_blank" rel="noopener noreferrer" href="https://cej.pj.gob.pe/cej/forms/busquedaform.html"><h3>Poder Judicial · CEJ</h3><small>Consulta de expedientes</small></a>
+      <a class="card" target="_blank" rel="noopener noreferrer" href="https://www.sunarp.gob.pe/"><h3>SUNARP</h3><small>Registros públicos</small></a>
+      <a class="card" target="_blank" rel="noopener noreferrer" href="https://www.gob.pe/institucion/reniec"><h3>RENIEC</h3><small>Identidad y DNI</small></a>
+      <a class="card" target="_blank" rel="noopener noreferrer" href="https://www.gob.pe/institucion/minjus"><h3>Defensa Pública · MINJUS</h3><small>Abogado gratuito</small></a>
+      <a class="card" target="_blank" rel="noopener noreferrer" href="https://www.gob.pe/institucion/mimp"><h3>DEMUNA · MIMP</h3><small>Defensoría del niño y adolescente</small></a>
+    </div></div>
+</div>
+
+<!-- FAQ -->
+<div class="view" id="faq">
+  <div class="pb"><h1>Preguntas frecuentes</h1></div>
+  <div class="wrap"><p class="sub">Respuestas generales; para tu caso concreto consulta a un abogado colegiado.</p>
+    <details><summary>¿Cómo se solicita una pensión de alimentos?</summary><p>Puedes acudir al Juzgado de Paz Letrado o a un Centro de Conciliación. La Defensa Pública y las DEMUNA orientan gratis. Lleva DNI y partida de nacimiento del menor.</p></details>
+    <details><summary>¿Qué hago si me despidieron sin causa justa?</summary><p>Se considera despido arbitrario. Puedes reclamar indemnización o reposición ante el Poder Judicial; existen plazos cortos (30 días hábiles para accionar), así que actúa pronto y consulta con un abogado laboralista o el Ministerio de Trabajo.</p></details>
+    <details><summary>¿Cómo presento una denuncia?</summary><p>Ve a una comisaría o a la Fiscalía de tu jurisdicción con tu DNI y las pruebas que tengas. Pide una copia o número de tu denuncia.</p></details>
+    <details><summary>¿Y si no puedo pagar un abogado?</summary><p>Puedes solicitar la Defensa Pública del MINJUS, sin costo, si cumples los requisitos socioeconómicos.</p></details>
   </div>
-</section>
+</div>
 
-<section id="video" class="rv">
-  <h2>Conócenos</h2><p class="sub">Mira cómo podemos ayudarte.</p>
-  <video class="vid" src="video.mp4" controls playsinline preload="metadata"></video>
-</section>
+<!-- CITAS -->
+<div class="view" id="citas">
+  <div class="pb"><h1>Agenda tu cita</h1></div>
+  <div class="wrap"><p class="sub">Elige el día y la hora que más te convenga. Al agendar aceptas la <a class="gl" href="#privacidad">Política de Privacidad</a>.</p>
+    <div id="cal" style="min-width:300px;height:700px;border-radius:16px;overflow:hidden"></div></div>
+</div>
 
-<style>
-  .team{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-top:18px}
-  .member{width:200px;text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px}
-  .member img{width:130px;height:130px;object-fit:cover;border-radius:50%;border:3px solid rgba(94,200,255,.6)}
-  .member h3{margin:12px 0 2px;font-size:1.05rem}
-  .member small{opacity:.75}
-  .vid{width:100%;max-width:760px;display:block;margin:18px auto 0;border-radius:16px;border:1px solid rgba(255,255,255,.14)}
-</style>
-  <section id="citas" class="rv">
-  <h2>Agenda tu cita</h2><p class="sub">Elige el día y la hora que más te convenga para tu asesoría.</p>
-  <div class="calendly-inline-widget" data-url="https://calendly.com/yairod82/asesoria-juridica-especializada?hide_gdpr_banner=1&background_color=0a0e18&text_color=ffffff&primary_color=5ec8ff" style="min-width:300px;height:700px;border-radius:16px;overflow:hidden;margin-top:18px"></div>
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-</section>
- <section id="reclamaciones" class="rv">
-  <h2>Libro de Reclamaciones</h2>
-  <p class="sub">Legalis Click Perú · RUC: [TU RUC] · Domicilio: [TU DIRECCIÓN]</p>
-  <form id="formReclamo" class="rf">
-    <select name="tipo" required>
-      <option value="">Tipo (Reclamo o Queja)</option>
-      <option>Reclamo</option>
-      <option>Queja</option>
-    </select>
-    <input name="nombres" placeholder="Nombres y apellidos" required>
-    <input name="documento" placeholder="DNI / CE" required>
-    <input name="domicilio" placeholder="Domicilio">
-    <input name="telefono" placeholder="Teléfono">
-    <input name="email" type="email" placeholder="Correo electrónico" required>
-    <input name="servicio" placeholder="Servicio contratado" required>
-    <input name="monto" placeholder="Monto reclamado (si aplica)">
-    <textarea name="detalle" rows="4" placeholder="Detalle del reclamo o queja" required></textarea>
-    <textarea name="pedido" rows="3" placeholder="Pedido del consumidor" required></textarea>
-    <label class="rc"><input type="checkbox" required> Declaro que la información ingresada es verdadera.</label>
-    <button class="btn" type="submit">Enviar reclamo</button>
-    <p id="rMsg" role="status"></p>
-  </form>
-</section>
+<!-- RECLAMACIONES -->
+<div class="view" id="reclamaciones">
+  <div class="pb"><h1>Libro de Reclamaciones</h1></div>
+  <div class="wrap"><p class="sub" style="text-align:center">Legalis Click Perú · RUC: [TU RUC] · Domicilio: [TU DIRECCIÓN]</p>
+    <form id="formReclamo" class="rf">
+      <select name="tipo" required><option value="">Tipo (Reclamo o Queja)</option><option>Reclamo</option><option>Queja</option></select>
+      <input name="nombres" placeholder="Nombres y apellidos" required>
+      <input name="documento" placeholder="DNI / CE" required>
+      <input name="domicilio" placeholder="Domicilio">
+      <input name="telefono" placeholder="Teléfono">
+      <input name="email" type="email" placeholder="Correo electrónico" required>
+      <input name="servicio" placeholder="Servicio contratado" required>
+      <input name="monto" placeholder="Monto reclamado (si aplica)">
+      <textarea name="detalle" rows="4" placeholder="Detalle del reclamo o queja" required></textarea>
+      <textarea name="pedido" rows="3" placeholder="Pedido del consumidor" required></textarea>
+      <label class="chk"><input type="checkbox" required> Declaro que la información ingresada es verdadera.</label>
+      <label class="chk"><input type="checkbox" required> He leído la <a href="#privacidad">Política de Privacidad</a> y autorizo el tratamiento de mis datos personales para atender este reclamo.</label>
+      <button class="btn" type="submit">Enviar reclamo</button><p id="rMsg" role="status"></p>
+    </form></div>
+</div>
 
-<style>
-  .rf{display:grid;gap:12px;max-width:640px;margin:18px auto 0}
-  .rf select option{color:#000}
-  .rc{display:flex;gap:8px;align-items:center;font-size:.9rem}
-  .rc input{width:auto}
-  #rMsg{margin:0;min-height:1.4em}
-</style>
+<!-- OPINIONES -->
+<div class="view" id="opiniones">
+  <div class="pb"><h1>Opiniones</h1></div>
+  <div class="wrap"><p class="sub">Lee y comparte tu experiencia.</p><div id="cmList"></div>
+    <div class="rf" style="margin:20px 0 0;max-width:none">
+      <input id="cmName" placeholder="Tu nombre" maxlength="40">
+      <textarea id="cmText" rows="3" placeholder="Escribe tu opinión…" maxlength="400"></textarea>
+      <label class="chk"><input type="checkbox" id="cmOk"> Acepto la <a href="#privacidad">Política de Privacidad</a> y que mi nombre y opinión se publiquen en esta página.</label>
+      <button class="btn" onclick="submitComment()" style="justify-self:start">Publicar opinión</button>
+    </div></div>
+</div>
 
-<script>
-(function(){
-  const SB_URL='https://syzkarckynivknyqtdys.supabase.co/rest/v1/';
-  const SB_KEY='sb_publishable_O0Ns82ikwo6U4IP5I_LZTw_KRZhOhHo';
-  const f=document.getElementById('formReclamo'), msg=document.getElementById('rMsg');
-  if(!f)return;
-  f.addEventListener('submit',async function(e){
-    e.preventDefault();
-    const b=f.querySelector('button'); b.disabled=true; msg.textContent='Enviando...';
-    const d=Object.fromEntries(new FormData(f).entries());
-    try{
-      const r=await fetch(SB_URL+'/rest/v1/reclamaciones',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','apikey':SB_KEY,'Prefer':'return=minimal'},
-        body:JSON.stringify(d)
-      });
-      if(!r.ok)throw new Error(r.status);
-      msg.textContent='Tu reclamo fue registrado. Te responderemos al correo indicado.';
-      f.reset();
-    }catch(err){
-      msg.textContent='No se pudo enviar. Inténtalo de nuevo en unos minutos.';
-    }
-    b.disabled=false;
-  });
-})();
-</script>
-  <section id="faq" class="rv">
-  <h2>Preguntas frecuentes</h2><p class="sub">Respuestas generales; para tu caso concreto consulta a un abogado colegiado.</p>
-  <details><summary>¿Cómo se solicita una pensión de alimentos?</summary><p>Puedes acudir al Juzgado de Paz Letrado o a un Centro de Conciliación. La Defensa Pública y las DEMUNA orientan gratis. Lleva DNI y partida de nacimiento del menor.</p></details>
-  <details><summary>¿Qué hago si me despidieron sin causa justa?</summary><p>Se considera despido arbitrario. Puedes reclamar indemnización o reposición ante el Poder Judicial; existen plazos cortos (30 días hábiles para accionar), así que actúa pronto y consulta con un abogado laboralista o el Ministerio de Trabajo.</p></details>
-  <details><summary>¿Cómo presento una denuncia?</summary><p>Ve a una comisaría o a la Fiscalía de tu jurisdicción con tu DNI y las pruebas que tengas. Pide una copia o número de tu denuncia.</p></details>
-  <details><summary>¿Y si no puedo pagar un abogado?</summary><p>Puedes solicitar la Defensa Pública del MINJUS, sin costo, si cumples los requisitos socioeconómicos.</p></details>
-</section>
+<!-- EXPEDIENTES -->
+<div class="view" id="expedientes">
+  <div class="pb"><h1>Expedientes</h1></div>
+  <div class="wrap"><p class="sub">Adjunta tus documentos (PDF, Word .docx o texto .txt), léelos aquí y genera un PDF. Todo se procesa en tu dispositivo: los archivos no se suben a ningún servidor. Evita cargar datos de terceros sin su autorización.</p>
+    <label class="drop" id="drop"><input type="file" id="fi" accept=".pdf,.docx,.txt" multiple hidden><b>📎 Adjuntar expediente</b><small>Toca o arrastra tus archivos aquí (máx. 15 MB cada uno)</small></label>
+    <div id="exl"></div>
+    <input id="sx" placeholder="🔍 Buscar dentro del expediente…" oninput="drawEx()" style="margin:14px 0">
+    <div id="rd" class="rd">Aún no adjuntaste archivos.</div>
+    <div class="rf" style="margin:18px 0 0;max-width:none">
+      <input id="ptitle" placeholder="Título del PDF (ej.: Expediente 123-2026)">
+      <textarea id="pnotes" rows="4" placeholder="Notas o resumen para incluir en el PDF (opcional)"></textarea>
+      <button class="btn" onclick="genPDF()" style="justify-self:start">📄 Generar PDF</button><p id="eMsg" role="status"></p>
+    </div></div>
+</div>
 
-<section id="opiniones" class="rv">
-  <h2>Opiniones</h2><p class="sub">Lee y comparte tu experiencia.</p>
-  <div id="cmList"></div>
-  <input id="cmName" placeholder="Tu nombre" maxlength="40" style="margin-bottom:8px">
-  <textarea id="cmText" rows="3" placeholder="Escribe tu opinión…" maxlength="400"></textarea><br><br>
-  <button class="btn" onclick="submitComment()">Publicar opinión</button>
-</section>
+<!-- PRIVACIDAD -->
+<div class="view" id="privacidad">
+  <div class="pb"><h1>Política de Privacidad</h1></div>
+  <div class="wrap"><p class="sub">Protección de datos personales conforme a la Ley N.° 29733 y su Reglamento (D.S. N.° 003-2013-JUS). Última actualización: 27 de octubre de 2026.</p>
+    <details open><summary>1. Responsable del tratamiento</summary><p>Legalis Click Perú, RUC [TU RUC], con domicilio en [TU DIRECCIÓN]. Contacto para datos personales: [TU CORREO DE CONTACTO].</p></details>
+    <details><summary>2. Datos que recopilamos</summary><ul><li>Libro de Reclamaciones: nombres, documento, domicilio, teléfono, correo, servicio contratado y detalle del reclamo.</li><li>Citas (Calendly): nombre, correo y horario elegido.</li><li>Opiniones: nombre y texto que publiques.</li><li>Chat: los mensajes que escribas. Te pedimos no ingresar DNI ni datos de casos reales.</li></ul></details>
+    <details><summary>3. Finalidades</summary><p>Atender reclamos y quejas, agendar citas, responder consultas, publicar opiniones y mejorar el servicio. No vendemos tus datos.</p></details>
+    <details><summary>4. Consentimiento</summary><p>Al marcar la casilla correspondiente o al usar el servicio (agendar una cita, usar el chat), otorgas tu consentimiento libre, previo, expreso e informado para el tratamiento descrito. Puedes revocarlo escribiendo al correo de contacto.</p></details>
+    <details><summary>5. Terceros y transferencia</summary><p>Usamos proveedores que tratan datos por encargo nuestro: Supabase (almacenamiento de reclamos), Calendly (citas), Vercel (alojamiento) y un servicio de inteligencia artificial para el chat. Sus servidores pueden estar fuera del Perú (flujo transfronterizo). También podremos compartir datos si una autoridad competente lo exige.</p></details>
+    <details><summary>6. Conservación</summary><p>Conservamos tus datos mientras sean necesarios para las finalidades indicadas y por los plazos legales: [PLAZO DE CONSERVACIÓN]. Luego se eliminan o anonimizan.</p></details>
+    <details><summary>7. Tus derechos (ARCO)</summary><p>Puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición escribiendo a [TU CORREO DE CONTACTO] con tu nombre y copia de tu documento. Si no se atiende tu solicitud, puedes reclamar ante la Autoridad Nacional de Protección de Datos Personales (Ministerio de Justicia y Derechos Humanos).</p></details>
+    <details><summary>8. Seguridad y menores de edad</summary><p>Aplicamos medidas razonables de seguridad. Este sitio no está dirigido a menores de edad sin autorización de su padre, madre o tutor.</p></details>
+    <details><summary>9. Expedientes y cookies</summary><p>Los archivos que adjuntas en Expedientes se leen y convierten a PDF dentro de tu navegador; no se envían ni se guardan en nuestros servidores. Usamos solo una cookie técnica para recordar que aceptaste este aviso.</p></details>
+    <details><summary>10. Cambios</summary><p>Podemos actualizar esta política; la versión vigente estará siempre en esta página.</p></details>
+  </div>
+</div>
 </main>
-<footer>© 2026 Legalis Click Perú · Orientación general, no reemplaza a un abogado colegiado.</footer>
+
+<footer class="ft"><div class="ftg">
+  <div><div class="logo">LEGALIS <span>CLICK</span></div><div class="soc" style="margin-top:14px"><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">ig</a><a href="#" aria-label="TikTok">tk</a></div></div>
+  <a class="lr" href="#reclamaciones"><span class="bk">📖<small>Libro de Reclamaciones</small></span><p>Conforme al Código de Protección y Defensa del Consumidor, este establecimiento cuenta con un Libro de Reclamaciones Virtual a disposición de todos sus usuarios.</p></a>
+  <div class="fl"><a href="#nosotros">Nosotros</a><a href="#faq">Preguntas frecuentes</a><a href="#citas">Contacto y citas</a><a href="#privacidad">Políticas de privacidad</a></div>
+</div><div class="cp">© 2026 Legalis Click Perú · Orientación general, no reemplaza a un abogado colegiado.</div></footer>
+<div id="ck"><span>Para brindarte una mejor experiencia utilizamos cookies técnicas. Si continúas usando este sitio, asumimos que estás de acuerdo. <a href="#privacidad">Ver política de privacidad</a></span><button class="btn" onclick="ckOk()">Aceptar</button></div>
 
 <button id="fab" class="btn" onclick="openChat()" aria-label="Abrir chat">💬</button>
 <div id="chat" role="dialog" aria-label="Chat Legalis">
-  <header>⚖️ Asistente Legalis <span style="float:right;cursor:pointer" onclick="openChat()">✕</span></header>
+  <div class="ch">⚖️ Asistente Legalis <span style="float:right;cursor:pointer" onclick="openChat(false)">✕</span></div>
   <div id="msgs"></div>
-  <div class="qk">
-    <button onclick="quick('Derecho de Familia')">Familia</button><button onclick="quick('Derecho Penal')">Penal</button>
-    <button onclick="quick('Derecho Laboral')">Laboral</button><button onclick="quick('Derecho Civil')">Civil</button>
-  </div>
+  <div class="qk"><button onclick="quick('Derecho de Familia')">Familia</button><button onclick="quick('Derecho Penal')">Penal</button><button onclick="quick('Derecho Laboral')">Laboral</button><button onclick="quick('Derecho Civil')">Civil</button></div>
+  <div class="cn">Al usar el chat aceptas la <a class="gl" href="#privacidad" onclick="openChat(false)">Política de Privacidad</a>.</div>
   <div class="row"><input id="cin" placeholder="Escribe tu consulta…" onkeydown="if(event.key==='Enter')send()"><button class="btn" onclick="send()">➤</button></div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="juez.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://assets.calendly.com/assets/external/widget.js"></script>
 <script>
-/* ===== MÓDULO 1: MUNDO 3D INTERACTIVO (reacciona a mouse, toque y scroll) ===== */
-(function(){
-  const cv=document.getElementById('bg');
-  if(!window.THREE){return}
-  const r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
-  r.setPixelRatio(Math.min(devicePixelRatio,2));
-  const s=new THREE.Scene(),c=new THREE.PerspectiveCamera(50,1,.1,100);c.position.z=9;
-  s.add(new THREE.AmbientLight(0x88aaff,.7));const L=new THREE.PointLight(0x5ec8ff,3);L.position.set(5,4,7);s.add(L);
-  const W=new THREE.Group();s.add(W);
-  const R=2.6;
-  W.add(new THREE.Mesh(new THREE.SphereGeometry(R,48,48),new THREE.MeshStandardMaterial({color:0x061a3a,emissive:0x04132e,metalness:.3,roughness:.6})));
-  W.add(new THREE.Mesh(new THREE.SphereGeometry(R+.02,28,18),new THREE.MeshBasicMaterial({color:0x1e63e9,wireframe:true,transparent:true,opacity:.22})));
-  const lp=[];
-  for(let i=0;i<7000;i++){const th=Math.random()*6.2832,ph=Math.acos(2*Math.random()-1);
-    const x=Math.sin(ph)*Math.cos(th),y=Math.cos(ph),z=Math.sin(ph)*Math.sin(th);
-    const n=Math.sin(x*3.1+1)*Math.cos(y*3.7)+Math.sin(z*4.3+x*2)*.7+Math.cos(y*6+z*2)*.4;
-    if(n>.3)lp.push(x*(R+.04),y*(R+.04),z*(R+.04))}
-  const lg=new THREE.BufferGeometry();lg.setAttribute('position',new THREE.Float32BufferAttribute(lp,3));
-  W.add(new THREE.Points(lg,new THREE.PointsMaterial({color:0x5ec8ff,size:.04})));
-  s.add(new THREE.Mesh(new THREE.SphereGeometry(R+.35,32,32),new THREE.MeshBasicMaterial({color:0x5ec8ff,transparent:true,opacity:.09,side:THREE.BackSide})));
-  const ring=new THREE.Mesh(new THREE.TorusGeometry(R+.9,.012,8,120),new THREE.MeshBasicMaterial({color:0x5ec8ff,transparent:true,opacity:.5}));
-  ring.rotation.x=1.2;W.add(ring);
-  const sat=new THREE.Mesh(new THREE.SphereGeometry(.07,12,12),new THREE.MeshBasicMaterial({color:0xffffff}));ring.add(sat);
-  const N=700,pos=new Float32Array(N*3);for(let i=0;i<N*3;i++)pos[i]=(Math.random()-.5)*36;
-  const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  const stars=new THREE.Points(pg,new THREE.PointsMaterial({color:0xffffff,size:.04,transparent:true,opacity:.7}));s.add(stars);
-  let sc=0,t=0,mx=0,my=0,vel=0,drag=false,lx=0,pulse=0;
-  function rs(){const w=innerWidth,h=innerHeight;r.setSize(w,h,false);c.aspect=w/h;c.updateProjectionMatrix();W.userData.mob=w<800}
-  addEventListener('resize',rs);rs();
-  addEventListener('scroll',()=>{sc=scrollY/(document.body.scrollHeight-innerHeight||1)},{passive:true});
-  addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;if(drag){vel=(e.clientX-lx)*.004;lx=e.clientX}});
-  addEventListener('pointerdown',e=>{drag=true;lx=e.clientX;pulse=1});
-  addEventListener('pointerup',()=>{drag=false});
-  (function loop(){
-    t+=.01;pulse*=.94;vel*=.95;
-    W.rotation.y+=.0025+vel+Math.abs(sc-(W.userData.ps||0))*2;W.userData.ps=sc;
-    W.rotation.x+=((my*.6)-W.rotation.x)*.05;
-    const mob=W.userData.mob,k=(mob?.6:1)*(1+pulse*.06);
-    W.scale.setScalar(k*(1+sc*.35));
-    W.position.x+=(((mob?0:3.2)-mx*(mob?0:1.2)-sc*(mob?0:2.5))-W.position.x)*.05;
-    W.position.y=mob?-.8:0;
-    ring.rotation.z=t*.5;sat.position.set(Math.cos(t*2)*(R+.9),Math.sin(t*2)*(R+.9),0);
-    stars.rotation.y=t*.03+mx*.2;stars.rotation.x=my*.1;
-    r.render(s,c);requestAnimationFrame(loop)})();
-})();
+/* Navegación por "páginas" (estilo Juris.pe) */
+const CAL_URL='https://calendly.com/yairod82/asesoria-juridica-especializada?hide_gdpr_banner=1&background_color=0a0e1a&text_color=ffffff&primary_color=e8b04a';
+let calOk=false;
+function initCal(){if(calOk||!window.Calendly)return;calOk=true;Calendly.initInlineWidget({url:CAL_URL,parentElement:document.getElementById('cal')})}
+function route(){
+  const h=(location.hash||'#inicio').slice(1);
+  const v=document.getElementById(h);
+  const id=(v&&v.classList.contains('view'))?h:'inicio';
+  document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id===id));
+  document.querySelectorAll('#menu a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+id));
+  window.scrollTo(0,0);
+  try{if(id==='citas')initCal();window.dispatchEvent(new Event('resize'))}catch(err){}
+  document.querySelectorAll('#'+id+' .rv').forEach(e=>io.observe(e));
+}
+const io=('IntersectionObserver' in window)?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1}):{observe:e=>e.classList.add('in')};
+addEventListener('hashchange',route);addEventListener('load',route);
+document.addEventListener('click',function(e){const a=e.target.closest('a[href^="#"]');if(!a)return;const h=a.getAttribute('href');if(h.length<2)return;e.preventDefault();if(location.hash!==h)location.hash=h;else route()});
+route();
 
-/* ===== MÓDULO 2: ANIMACIONES AL SCROLL ===== */
+/* Buscador de la cabecera: abre el chat con tu consulta */
+function searchGo(e){e.preventDefault();const i=document.getElementById('sq'),t=i.value.trim();if(!t)return false;openChat(true);document.getElementById('cin').value=t;i.value='';send();return false}
+
+/* Libro de Reclamaciones (Supabase) */
 (function(){
-  if(!window.gsap)return;gsap.registerPlugin(ScrollTrigger);
-  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  gsap.utils.toArray('.rv').forEach(e=>gsap.to(e,{opacity:1,y:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:e,start:'top 85%'}}));
-  gsap.from('.hero > *',{opacity:0,y:30,stagger:.18,duration:1,ease:'power3.out'});
-  document.querySelectorAll('.tilt').forEach(el=>{
-    el.addEventListener('mousemove',e=>{const b=el.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;el.style.transform=`perspective(600px) rotateY(${x*14}deg) rotateX(${-y*14}deg) translateY(-4px)`});
-    el.addEventListener('mouseleave',()=>el.style.transform='');
+  const SB_URL='https://TU-PROYECTO.supabase.co';
+  const SB_KEY='sb_publishable_TU_CLAVE';
+  const f=document.getElementById('formReclamo'),msg=document.getElementById('rMsg');
+  f.addEventListener('submit',async function(e){
+    e.preventDefault();
+    const b=f.querySelector('button[type=submit]');b.disabled=true;msg.textContent='Enviando...';
+    const d=Object.fromEntries(new FormData(f).entries());
+    try{
+      const r=await fetch(SB_URL+'/rest/v1/reclamaciones',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify(d)});
+      if(!r.ok)throw new Error(r.status);
+      msg.textContent='Tu reclamo fue registrado. Te responderemos al correo indicado.';f.reset();
+    }catch(err){msg.textContent='No se pudo enviar. Inténtalo de nuevo en unos minutos.'}
+    b.disabled=false;
   });
 })();
 
-/* ===== MÓDULO 3: COMENTARIOS (listo para conectar Supabase u otro servicio) ===== */
+/* Opiniones */
 const localComments=[{n:'María P.',t:'Muy claro y fácil de entender. ¡Gracias!'}];
 async function fetchComments(){
-  try{
-    const r=await fetch('/api/comments');
-    if(!r.ok)throw new Error(r.status);
-    const data=await r.json();
-    return data.map(c=>({n:c.name,t:c.text,name:c.name,text:c.text}));
-  }catch(e){return localComments;}
+  try{const r=await fetch('/api/comments');if(!r.ok)throw new Error(r.status);const data=await r.json();return data.map(c=>({n:c.name,t:c.text}))}
+  catch(e){return localComments}
 }
 async function postComment(name,text){
   const r=await fetch('/api/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,text})});
-  if(!r.ok){alert('No se pudo enviar tu opinión. Inténtalo de nuevo.');throw new Error(r.status);}
+  if(!r.ok){alert('No se pudo enviar tu opinión. Inténtalo de nuevo.');throw new Error(r.status)}
   alert('¡Gracias! Tu opinión fue enviada.');
 }
 async function renderComments(){
   const list=await fetchComments(),box=document.getElementById('cmList');box.innerHTML='';
-  list.forEach(c=>{const d=document.createElement('div');d.className='cm';const b=document.createElement('b');b.textContent=c.n||c.name;const p=document.createElement('div');p.textContent=c.t||c.text;d.append(b,p);box.append(d)});
+  list.forEach(c=>{const d=document.createElement('div');d.className='cm';const b=document.createElement('b');b.textContent=c.n;const p=document.createElement('div');p.textContent=c.t;d.append(b,p);box.append(d)});
 }
 async function submitComment(){
   const n=document.getElementById('cmName').value.trim(),t=document.getElementById('cmText').value.trim();
-  if(!n||!t)return;await postComment(n,t);document.getElementById('cmText').value='';renderComments();
+  if(!n||!t)return;
+  if(!document.getElementById('cmOk').checked){alert('Marca la casilla de aceptación de la Política de Privacidad para publicar.');return}
+  await postComment(n,t);document.getElementById('cmText').value='';renderComments();
 }
 renderComments();
 
-/* ===== MÓDULO 4: CHATBOT =====
- REGLAS INTERNAS DE LA IA (SYSTEM PROMPT; deben ir en el servidor, api/chat.js):
- - Sé extremadamente empático, cálido y usa lenguaje sencillo, sin tecnicismos innecesarios.
- - Basa tus respuestas estrictamente en el marco legal peruano vigente (Constitución, Código Civil, Código Penal, Código Procesal, normas laborales, etc.).
- - Prohibido inventar información: si no estás seguro, dilo y recomienda un abogado colegiado. Cero alucinaciones.
- - Responde también saludos y conversación general con amabilidad.
- - Recuerda siempre que tu orientación es general y no reemplaza a un abogado colegiado.
- - En riesgo de violencia o peligro, indica llamar al 105 o al 100.
-*/
+/* Expedientes: leer, buscar y generar PDF (todo en el navegador) */
+const EX=[];
+const esc=t=>t.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+async function readF(f){
+  const n=f.name.toLowerCase();
+  if(n.endsWith('.txt'))return await f.text();
+  if(n.endsWith('.pdf')){
+    pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const d=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;let t='';
+    for(let i=1;i<=d.numPages;i++){const c=await(await d.getPage(i)).getTextContent();t+=c.items.map(x=>x.str).join(' ')+'\n\n'}
+    return t.trim()||'(Este PDF no tiene texto seleccionable; puede ser un escaneo.)';
+  }
+  if(n.endsWith('.docx'))return (await mammoth.extractRawText({arrayBuffer:await f.arrayBuffer()})).value;
+  return '(Formato no compatible. Usa PDF, DOCX o TXT.)';
+}
+async function addFiles(list){
+  const m=document.getElementById('eMsg');
+  for(const f of list){
+    if(f.size>15e6){m.textContent=f.name+' supera 15 MB.';continue}
+    m.textContent='Leyendo '+f.name+'…';
+    try{EX.push({name:f.name,text:await readF(f)})}catch(e){EX.push({name:f.name,text:'(No se pudo leer este archivo.)'})}
+  }
+  m.textContent='';drawEx();
+}
+function drawEx(){
+  document.getElementById('exl').innerHTML=EX.map((x,i)=>'<div class="fi"><span>📄 '+esc(x.name)+'</span><button onclick="EX.splice('+i+',1);drawEx()" aria-label="Quitar">✕</button></div>').join('');
+  const q=document.getElementById('sx').value.trim(),rd=document.getElementById('rd');
+  if(!EX.length){rd.textContent='Aún no adjuntaste archivos.';return}
+  let h=EX.map(x=>'══ '+x.name+' ══\n'+x.text).join('\n\n');h=esc(h);
+  if(q)h=h.replace(new RegExp(esc(q).replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'),m=>'<mark>'+m+'</mark>');
+  rd.innerHTML=h;
+}
+function genPDF(){
+  const m=document.getElementById('eMsg');
+  if(!window.jspdf){m.textContent='No se pudo cargar el generador de PDF. Revisa tu conexión.';return}
+  if(!EX.length&&!document.getElementById('pnotes').value.trim()){m.textContent='Adjunta un archivo o escribe notas primero.';return}
+  const d=new jspdf.jsPDF({unit:'pt',format:'a4'}),M=48,W=d.internal.pageSize.getWidth()-2*M,Hh=d.internal.pageSize.getHeight()-M;let y=M;
+  function ln(t,sz,b){d.setFont('helvetica',b?'bold':'normal');d.setFontSize(sz);d.splitTextToSize(t,W).forEach(l=>{if(y>Hh){d.addPage();y=M}d.text(l,M,y);y+=sz*1.35})}
+  ln(document.getElementById('ptitle').value.trim()||'Expediente',18,true);
+  ln('Legalis Click Perú · '+new Date().toLocaleDateString('es-PE'),10);y+=8;
+  if(EX.length){ln('Archivos: '+EX.map(x=>x.name).join(', '),10);y+=8}
+  const nt=document.getElementById('pnotes').value.trim();if(nt){ln('Notas',13,true);ln(nt,11);y+=10}
+  EX.forEach(x=>{ln(x.name,13,true);ln(x.text.slice(0,200000),10);y+=12});
+  d.save('expediente.pdf');m.textContent='PDF generado.';
+}
+(function(){
+  const fi=document.getElementById('fi'),dr=document.getElementById('drop');
+  fi.addEventListener('change',()=>{addFiles(fi.files);fi.value=''});
+  ['dragover','dragenter'].forEach(e=>dr.addEventListener(e,ev=>{ev.preventDefault();dr.classList.add('ov')}));
+  ['dragleave','drop'].forEach(e=>dr.addEventListener(e,ev=>{ev.preventDefault();dr.classList.remove('ov')}));
+  dr.addEventListener('drop',ev=>addFiles(ev.dataTransfer.files));
+})();
+
+/* Aviso de cookies */
+function ckOk(){document.getElementById('ck').style.display='none';try{localStorage.setItem('ck','1')}catch(e){}}
+try{if(localStorage.getItem('ck'))document.getElementById('ck').style.display='none'}catch(e){}
+
+/* Chatbot (las reglas de la IA van en el servidor: api/chat.js) */
 const DISCLAIMER='Esta plataforma brinda orientación jurídica general y no reemplaza el patrocinio de un abogado colegiado.';
 const hist=[];
 const sid=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Date.now());
 const msgs=document.getElementById('msgs');
 function addMsg(t,who){const d=document.createElement('div');d.className='m '+who;d.textContent=t;msgs.append(d);msgs.scrollTop=msgs.scrollHeight;return d}
-function openChat(){const c=document.getElementById('chat');c.classList.toggle('on');if(c.classList.contains('on')&&!msgs.children.length)addMsg('¡Hola! Soy tu asistente de Legalis Click Perú. ⚖️\n\n'+DISCLAIMER+'\n\n¿En qué puedo ayudarte hoy?','bot\n\nPor tu privacidad, no escribas tu DNI, nombres completos ni datos de casos reales.')}
+function openChat(on){const c=document.getElementById('chat');if(on===undefined)c.classList.toggle('on');else c.classList.toggle('on',on);if(c.classList.contains('on')&&!msgs.children.length)addMsg('¡Hola! Soy tu asistente de Legalis Click Perú. ⚖️\n\n'+DISCLAIMER+'\n\nPor tu privacidad, no escribas tu DNI, nombres completos ni datos de casos reales.\n\n¿En qué puedo ayudarte hoy?','bot')}
 function quick(a){document.getElementById('cin').value='Tengo una consulta sobre '+a;send()}
 async function send(){
   const i=document.getElementById('cin'),t=i.value.trim();if(!t)return;i.value='';
   addMsg(t,'me');hist.push({role:'user',content:t});
   const w=addMsg('Escribiendo…','bot');
   try{
-const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist.slice(-12),session:sid})});
+    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist.slice(-12),session:sid})});
     if(!res.ok)throw new Error(res.status);
     const j=await res.json();w.textContent=j.reply;hist.push({role:'assistant',content:j.reply});
   }catch(e){w.textContent='El asistente no está conectado todavía. Mientras tanto, si es una emergencia llama al 105 o al 100.'}
-  saveChatHistory();
-}
-async function saveChatHistory(){
-  // TODO (opcional): await supabase.from('chat_history').insert({messages:hist});
 }
 </script>
 </body>
