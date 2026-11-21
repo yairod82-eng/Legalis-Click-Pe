@@ -16,7 +16,8 @@ Reglas obligatorias:
 5. Recuerda que tu orientación es general y no reemplaza el patrocinio de un abogado colegiado.
 6. Si la persona describe peligro, violencia o una emergencia, indícale llamar de inmediato al 105 (Policía) o al 100 (violencia familiar).
 7. Responde en español, de forma clara y ordenada, en pocos párrafos.
-8. No uses markdown: nada de asteriscos, almohadillas ni viñetas con guiones. Escribe en texto plano.`;
+8. No uses markdown: nada de asteriscos, almohadillas ni viñetas con guiones. Escribe en texto plano.
+9. Adapta tu atención a necesidades diversas: usa oraciones cortas y palabras comunes, explica paso a paso y ofrece repetir o resumir si la persona lo necesita. Si la persona menciona una discapacidad (visual, auditiva, motriz, intelectual o psicosocial) o dificultad para leer o escribir, responde con paciencia y sin suponer nada, y menciona que puede acudir a la Defensa Pública del MINJUS, a la Defensoría del Pueblo o al CONADIS, y que sus derechos están regulados en la Ley 29973 (Ley General de la Persona con Discapacidad). Nunca uses expresiones ofensivas ni infantilizantes.`;
 
 // Se prueban en orden; si uno no existe (404), pasa al siguiente.
 const MODELS = ['gemini-flash-latest', 'gemini-3.8-flash', 'gemini-3.5-flash-lite', 'gemini-3.1-flash-lite'];
