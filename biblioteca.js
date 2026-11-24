@@ -82,14 +82,20 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && m.classList.contains('on')) closeBook(); });
 
   function openBook(b) {
-    var url = BASE + b.f;
+    /* Prueba el nombre normal y, si no existe, el nombre con ".pdf" doble (Windows oculta extensiones) */
+    var cands = [BASE + b.f, BASE + b.f + '.pdf'];
     ttl.textContent = b.t;
-    op.href = url; dl.href = url;
+    op.href = cands[0]; dl.href = cands[0];
     fr.style.display = 'block'; er.style.display = 'none';
     m.classList.add('on'); document.body.style.overflow = 'hidden';
-    fetch(url, { method: 'HEAD' }).then(function (r) {
-      if (!r.ok) throw new Error(r.status);
-      fr.src = url + '#toolbar=1&navpanes=0';
-    }).catch(function () { fr.style.display = 'none'; er.style.display = 'grid'; });
+    (function probe(i) {
+      if (i >= cands.length) { fr.style.display = 'none'; er.style.display = 'grid'; return; }
+      fetch(cands[i], { method: 'HEAD' }).then(function (r) {
+        var ct = r.headers.get('content-type') || '';
+        if (!r.ok || ct.indexOf('html') > -1) throw new Error(r.status);
+        op.href = cands[i]; dl.href = cands[i];
+        fr.src = cands[i] + '#toolbar=1&navpanes=0';
+      }).catch(function () { probe(i + 1); });
+    })(0);
   }
 })();
