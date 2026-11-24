@@ -3,18 +3,21 @@
    copia uno de los bloques de LIBROS, cambia los datos y sube el PDF. */
 (function () {
   var LIBROS = [
-    { t: 'Constitución Política del Perú', s: '1993', f: 'constitucion-politica-1993.pdf', i: '🇵🇪', c: ['#7f1d1d', '#d91023'], d: 'La norma suprema: derechos fundamentales, organización del Estado y garantías constitucionales.', k: 'Constitucional' },
+    { t: 'Constitución Política del Perú', s: '1993', f: 'constitucion-politica-del-peru-1993.pdf', i: '🇵🇪', c: ['#7f1d1d', '#d91023'], d: 'La norma suprema: derechos fundamentales, organización del Estado y garantías constitucionales.', k: 'Constitucional' },
     { t: 'Código Civil', s: 'D. Leg. 295', f: 'codigo-civil.pdf', i: '⚖️', c: ['#14397a', '#3b82f6'], d: 'Personas, familia, sucesiones, derechos reales, contratos y obligaciones. Vigente desde 1984.', k: 'Civil' },
     { t: 'Código Procesal Civil', s: 'D. Leg. 768', f: 'codigo-procesal-civil.pdf', i: '📜', c: ['#14397a', '#60a5fa'], d: 'Reglas del proceso civil: demanda, plazos, pruebas, sentencias y recursos.', k: 'Civil' },
     { t: 'Código Penal', s: 'D. Leg. 635', f: 'codigo-penal.pdf', i: '🔨', c: ['#3b0d0d', '#b45309'], d: 'Delitos y penas en el Perú. Parte general, delitos en particular y faltas.', k: 'Penal' },
     { t: 'Nuevo Código Procesal Penal', s: 'D. Leg. 957', f: 'nuevo-codigo-procesal-penal.pdf', i: '🛡️', c: ['#3b0d0d', '#e8b04a'], d: 'El proceso penal acusatorio: investigación, juzgamiento, medidas cautelares e impugnación.', k: 'Penal' },
     { t: 'Código de los Niños y Adolescentes', s: 'Ley 27337', f: 'codigo-ninos-adolescentes.pdf', i: '👨‍👩‍👧', c: ['#065f46', '#34d399'], d: 'Derechos de la niñez, régimen de familia, alimentos, tenencia y régimen de visitas.', k: 'Familia' },
-    { t: 'Código de Protección y Defensa del Consumidor', s: 'Ley 29571', f: 'codigo-consumidor.pdf', i: '🛒', c: ['#6b21a8', '#c084fc'], d: 'Derechos del consumidor, reclamos, libro de reclamaciones y sanciones.', k: 'Consumidor' },
+    { t: 'Código de Protección y Defensa del Consumidor', s: 'Ley 29571', f: 'codigo-de-proteccion-y-defensa-del-consumidor.pdf', i: '🛒', c: ['#6b21a8', '#c084fc'], d: 'Derechos del consumidor, reclamos, libro de reclamaciones y sanciones.', k: 'Consumidor' },
     { t: 'Nueva Ley Procesal del Trabajo', s: 'Ley 29497', f: 'nueva-ley-procesal-trabajo.pdf', i: '👷', c: ['#9a3412', '#fb923c'], d: 'Proceso laboral oral: demanda, audiencias, despido, beneficios sociales y plazos.', k: 'Laboral' },
     { t: 'Ley del Procedimiento Administrativo General', s: 'TUO Ley 27444', f: 'tuo-ley-27444.pdf', i: '🏛️', c: ['#1e3a5f', '#38bdf8'], d: 'Trámites ante entidades públicas: silencio administrativo, recursos y plazos.', k: 'Administrativo' },
-    { t: 'Código Tributario', s: 'TUO D.S. 133-2013-EF', f: 'codigo-tributario.pdf', i: '🧾', c: ['#115e59', '#2dd4bf'], d: 'Obligaciones tributarias, SUNAT, infracciones, sanciones y procedimientos.', k: 'Tributario' }
+    { t: 'Código Tributario', s: 'TUO D.S. 133-2013-EF', f: 'codigo-tributario.pdf', i: '🧾', c: ['#115e59', '#2dd4bf'], d: 'Obligaciones tributarias, SUNAT, infracciones, sanciones y procedimientos.', k: 'Tributario' },
+    { t: 'Gestión Pública', s: 'Normas del Estado', f: 'gestion-publica.pdf', i: '🏢', c: ['#1e3a5f', '#94a3b8'], d: 'Normas sobre la organización y el funcionamiento de las entidades del Estado.', k: 'Administrativo' },
+    { t: 'Protección de Datos Personales', s: 'Ley 29733', f: 'proteccion-de-datos-personales.pdf', i: '🔒', c: ['#312e81', '#818cf8'], d: 'Tus derechos sobre tus datos personales y las obligaciones de quienes los tratan.', k: 'Datos personales' },
+    { t: 'Derechos Humanos', s: 'Normas y tratados', f: 'derechos-humanos.pdf', i: '🕊️', c: ['#0c4a6e', '#7dd3fc'], d: 'Derechos humanos reconocidos en el Perú y en los tratados internacionales.', k: 'Derechos humanos' }
   ];
-  var BASE = 'libros/';
+  var BASE = '';
   var FUENTE = 'https://spij.minjus.gob.pe/';
 
   var css = '' +
